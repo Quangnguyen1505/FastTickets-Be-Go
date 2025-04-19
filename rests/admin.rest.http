@@ -1,0 +1,4 @@
+@base_url= http://localhost:8081/v1/2024
+
+###remove user
+GET {{base_url}}/admin/remove

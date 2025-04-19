@@ -1,0 +1,20 @@
+package utlis
+
+import (
+	"fmt"
+	"strconv"
+	"strings"
+
+	"github.com/google/uuid"
+)
+
+func GetUserKey(hashKey string) string {
+	return fmt.Sprintf("u:%s:otp", hashKey)
+}
+
+func GenerateCliTokenUUID(userId int) string {
+	newUUID := uuid.New()
+	// CONVERT UUID to String, remove -
+	uuidString := strings.ReplaceAll(newUUID.String(), "-", "")
+	return strconv.Itoa(userId) + "clitoken" + uuidString //strconv convert int to string
+}

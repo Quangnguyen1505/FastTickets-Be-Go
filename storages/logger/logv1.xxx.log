@@ -1,0 +1,3 @@
+{"level":"INFO","time":"2024-08-27T17:30:55.967+0700","caller":"initialize/run.go:16","msg":"Info log","line":1}
+{"level":"INFO","time":"2024-08-27T17:56:06.383+0700","caller":"initialize/run.go:15","msg":"Info log","line":1}
+{"level":"ERROR","time":"2024-08-27T17:57:27.728+0700","caller":"initialize/run.go:15","msg":"Error log","line":1,"stacktrace":"github.com/ntquang/ecommerce/internal/initialize.Run\n\tD:/Golang-Project/github.com/ntquang/ecommerce/internal/initialize/run.go:15\nmain.main\n\tD:/Golang-Project/github.com/ntquang/ecommerce/cmd/server/main.go:9\nruntime.main\n\tD:/Install Software/Golang/src/runtime/proc.go:272"}

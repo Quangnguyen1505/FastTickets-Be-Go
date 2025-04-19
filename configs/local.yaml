@@ -1,0 +1,33 @@
+server:
+  port: 8082
+  mode: "dev"
+  domainBe: "http://localhost:8082"
+postgresql:
+  username: postgres
+  password: "1234567890"
+  host: localhost
+  port: 25432
+  dbname : shopdevgov2
+security:
+  jwt:
+    secret: quang23@##@@
+logger:
+  file_name: "./storages/logger/logv1.001.log"
+  max_size:    500
+  max_backups: 3
+  max_age:     28
+  compress:   true
+  loglevel:  debug
+redis:
+  host: localhost
+  port: 6381
+  password: 
+  db: 0
+  pool_size: 10
+jwt:
+  TOKEN_HOUR_LIFESPAN: 1
+  JWT_EXPIRATION: 1h
+  API_SERCERT_KEY: "a83178ba55342d349e3f03263919347f937a20a9b68d73976800a5b57f9e1f5f89ed1bb27492a4ed43ff133704537cfcd74f49a7b16e7353b5883e00da8761d8"
+oauth2Google:
+  clientSecret: ${GOOGLE_CLIENT_SECRET}
+  clientId: ${GOOGLE_CLIENT_ID}

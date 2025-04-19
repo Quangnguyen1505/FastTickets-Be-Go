@@ -1,0 +1,734 @@
+basePath: /v1/2024
+definitions:
+  model.AddNewContactMessageParams:
+    properties:
+      email:
+        type: string
+      message:
+        type: string
+      name:
+        type: string
+      phone:
+        type: string
+    type: object
+  model.AddNewEventParams:
+    properties:
+      description:
+        type: string
+      end:
+        description: ISO 8601
+        type: string
+      image:
+        type: string
+      name:
+        type: string
+      start:
+        description: 'ISO 8601: "2025-04-08T17:30:00Z"'
+        type: string
+    type: object
+  model.LoginInput:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    type: object
+  model.NewOrUpdateMenuFunctionParams:
+    properties:
+      active:
+        type: boolean
+      description:
+        type: string
+      name:
+        type: string
+      url:
+        type: string
+    type: object
+  model.RegisterInput:
+    properties:
+      verify_key:
+        type: string
+      verify_purpose:
+        type: string
+      verify_type:
+        type: integer
+    type: object
+  model.SetupTwoFactorAuthInput:
+    properties:
+      two_factor_auth_type:
+        type: string
+      two_factor_email:
+        type: string
+      user_id:
+        type: integer
+    type: object
+  model.TwoFactorVerifycationInput:
+    properties:
+      two_factor_code:
+        type: string
+      user_id:
+        type: integer
+    type: object
+  model.UpdateContactMessageParams:
+    properties:
+      status:
+        type: integer
+    type: object
+  model.UpdateEventParams:
+    properties:
+      active:
+        type: boolean
+      description:
+        type: string
+      end:
+        type: string
+      image:
+        type: string
+      name:
+        type: string
+      start:
+        type: string
+      user_id:
+        type: string
+    type: object
+  model.UpdatePasswordInput:
+    properties:
+      password:
+        type: string
+      token:
+        type: string
+    type: object
+  model.VerifyInput:
+    properties:
+      verify_code:
+        type: string
+      verify_key:
+        type: string
+    type: object
+  response.ErrResponse:
+    properties:
+      code:
+        type: integer
+      detail: {}
+      messgae:
+        type: string
+    type: object
+  response.Response:
+    properties:
+      code:
+        type: integer
+      data: {}
+      messgae:
+        type: string
+    type: object
+host: localhost:8082
+info:
+  contact:
+    email: quang0706r@gmail.com
+    name: TEAM QUANG
+    url: https://github.com/Quangnguyen1505/Ecommerce-Go
+  description: This is a server ecommerce.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: https://github.com/Quangnguyen1505/Ecommerce-Go
+  title: Demo API Ecommerce
+  version: 1.0.0
+paths:
+  /contact-messages:
+    get:
+      consumes:
+      - application/json
+      description: When admin wants to get all contact messages filtered by status
+      parameters:
+      - description: authorization token
+        in: header
+        name: authorization
+        required: true
+        type: string
+      - description: x-client-id user
+        in: header
+        name: x-client-id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.ErrResponse'
+      summary: Get all contact messages by status
+      tags:
+      - contactmessage
+    post:
+      consumes:
+      - application/json
+      description: When user sends a new contact message
+      parameters:
+      - description: Payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/model.AddNewContactMessageParams'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.ErrResponse'
+      summary: Create new contact message
+      tags:
+      - contactmessage
+  /contact-messages/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: When admin wants to delete a contact message
+      parameters:
+      - description: authorization token
+        in: header
+        name: authorization
+        required: true
+        type: string
+      - description: x-client-id user
+        in: header
+        name: x-client-id
+        required: true
+        type: string
+      - description: Contact Message ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.ErrResponse'
+      summary: Delete contact message
+      tags:
+      - contactmessage
+    get:
+      consumes:
+      - application/json
+      description: When admin wants to get a contact message by its ID
+      parameters:
+      - description: Contact Message ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.ErrResponse'
+      summary: Get contact message by ID
+      tags:
+      - contactmessage
+    put:
+      consumes:
+      - application/json
+      description: When admin wants to update status of a contact message
+      parameters:
+      - description: authorization token
+        in: header
+        name: authorization
+        required: true
+        type: string
+      - description: x-client-id user
+        in: header
+        name: x-client-id
+        required: true
+        type: string
+      - description: Contact Message ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/model.UpdateContactMessageParams'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.ErrResponse'
+      summary: Update contact message
+      tags:
+      - contactmessage
+  /events:
+    get:
+      consumes:
+      - application/json
+      description: When admin wants to get all event content
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.ErrResponse'
+      summary: Get all events
+      tags:
+      - event
+    post:
+      consumes:
+      - application/json
+      description: When admin wants to add a new event
+      parameters:
+      - description: authorization token
+        in: header
+        name: authorization
+        required: true
+        type: string
+      - description: x-client-id user
+        in: header
+        name: x-client-id
+        required: true
+        type: string
+      - description: payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/model.AddNewEventParams'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.ErrResponse'
+      summary: Create new event
+      tags:
+      - event
+  /events/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: When admin wants to delete an event
+      parameters:
+      - description: Event ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.ErrResponse'
+      summary: Delete event
+      tags:
+      - event
+    get:
+      consumes:
+      - application/json
+      description: When admin wants to get an event by ID
+      parameters:
+      - description: Event ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.ErrResponse'
+      summary: Get event by ID
+      tags:
+      - event
+    put:
+      consumes:
+      - application/json
+      description: When admin wants to update an event
+      parameters:
+      - description: Event ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/model.UpdateEventParams'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.ErrResponse'
+      summary: Update event
+      tags:
+      - event
+  /menu-function/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a menu function by its ID
+      parameters:
+      - description: Menu Function ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.ErrResponse'
+      summary: Delete menu function
+      tags:
+      - menu function
+  /menu-functions:
+    get:
+      consumes:
+      - application/json
+      description: Get all menu functions
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.ErrResponse'
+      summary: Get all menu functions
+      tags:
+      - menu function
+    post:
+      consumes:
+      - application/json
+      description: Create a new menu function
+      parameters:
+      - description: payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/model.NewOrUpdateMenuFunctionParams'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.ErrResponse'
+      summary: Create new menu function
+      tags:
+      - menu function
+  /menu-functions/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Retrieve a specific menu function by its ID
+      parameters:
+      - description: Menu Function ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.ErrResponse'
+      summary: Get menu function by ID
+      tags:
+      - menu function
+    put:
+      consumes:
+      - application/json
+      description: Update an existing menu function
+      parameters:
+      - description: Menu Function ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/model.NewOrUpdateMenuFunctionParams'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.ErrResponse'
+      summary: Update menu function
+      tags:
+      - menu function
+  /menu-functions/active:
+    get:
+      consumes:
+      - application/json
+      description: Get all menu functions that are currently active
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.ErrResponse'
+      summary: Get all active menu functions
+      tags:
+      - menu function
+  /users/login:
+    post:
+      consumes:
+      - application/json
+      description: When user is login save dbs
+      parameters:
+      - description: payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/model.LoginInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.ErrResponse'
+      summary: User Login
+      tags:
+      - account manager
+  /users/register:
+    post:
+      consumes:
+      - application/json
+      description: When user is registered send otp to email
+      parameters:
+      - description: payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/model.RegisterInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.ErrResponse'
+      summary: User Registrasion
+      tags:
+      - account manager
+  /users/two-factor/setup:
+    post:
+      consumes:
+      - application/json
+      description: When user is login after 2 factor authentication
+      parameters:
+      - description: Authorization token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/model.SetupTwoFactorAuthInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.ErrResponse'
+      summary: User 2FA
+      tags:
+      - account 2fa
+  /users/two-factor/verify:
+    post:
+      consumes:
+      - application/json
+      description: When user is login after enter code with pupose verify
+      parameters:
+      - description: Authorization token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/model.TwoFactorVerifycationInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.ErrResponse'
+      summary: User Verify 2FA
+      tags:
+      - account 2fa
+  /users/updatePass:
+    post:
+      consumes:
+      - application/json
+      description: When user is VerifyOTP ok after Update Password
+      parameters:
+      - description: payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/model.UpdatePasswordInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.ErrResponse'
+      summary: User Update Password
+      tags:
+      - account manager
+  /users/verifyOTP:
+    post:
+      consumes:
+      - application/json
+      description: When user is register after verify otp
+      parameters:
+      - description: payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/model.VerifyInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.ErrResponse'
+      summary: User Verify OTP
+      tags:
+      - account manager
+swagger: "2.0"

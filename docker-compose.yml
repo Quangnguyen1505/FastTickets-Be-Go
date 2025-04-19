@@ -1,0 +1,42 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:14
+    container_name: postgres_container
+    environment:
+      POSTGRES_USER: "postgres" 
+      POSTGRES_PASSWORD: "1234567890"
+      POSTGRES_DB: "shopdevgov2" 
+    ports:
+      - "25432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - mynetwork
+  redis:
+    image: redis:7.0
+    container_name: redis_container
+    ports:
+      - "6381:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - mynetwork
+  # app:
+  #   container_name: go_backend_crm_shopdev
+  #   build: 
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "8081:8081"
+  #   networks:
+  #     - mynetwork
+  #   depends_on: # postgres and redis start before app
+  #     - postgres
+  #     - redis
+volumes:
+  postgres_data:
+  redis_data:
+networks:
+  mynetwork:
+    driver: bridge

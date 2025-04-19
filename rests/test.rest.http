@@ -1,0 +1,2 @@
+### check status
+GET http://localhost:8082/v1/2024/checkStatus
