@@ -15,8 +15,14 @@ func ParseEventQuery(ctx *gin.Context) model.EventQuery {
 }
 
 func ParseContactMessageQuery(ctx *gin.Context) model.ContactMessageQuery {
+	status := int16(GetQueryInt(ctx, "status", 0))
+	var statusPtr *int16
+	if status != 0 {
+		statusPtr = &status
+	}
+
 	return model.ContactMessageQuery{
-		Status: int16(GetQueryInt(ctx, "status", 0)),
+		Status: statusPtr,
 		Limit:  GetQueryInt(ctx, "limit", 10),
 		Page:   GetQueryInt(ctx, "page", 1),
 	}

@@ -21,5 +21,6 @@ func (cMR *ContactMessageRouter) InitContactMessage(Router *gin.RouterGroup) {
 		privateContactMessageRouter.GET("", contactmessage.ContactMessage.GetAllContactMessageStatus)
 		privateContactMessageRouter.PUT("/:id", contactmessage.ContactMessage.EditContactMessage)
 		privateContactMessageRouter.DELETE("/:id", contactmessage.ContactMessage.DeleteContactMessage)
+		privateContactMessageRouter.POST("/customer", contactmessage.ContactMessage.SendEmailToCustomer)
 	}
 }

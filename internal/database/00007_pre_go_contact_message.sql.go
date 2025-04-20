@@ -62,19 +62,19 @@ func (q *Queries) DeleteContactMessage(ctx context.Context, id pgtype.UUID) erro
 const getAllContactMessages = `-- name: GetAllContactMessages :many
 SELECT id, name, email, phone, message, status, created_at
 FROM contact_messages
-WHERE status = $1
+WHERE ($1 = -1 OR status = $1)
 ORDER BY created_at DESC
 LIMIT $2 OFFSET $3
 `
 
 type GetAllContactMessagesParams struct {
-	Status int16
-	Limit  int32
-	Offset int32
+	Column1 interface{}
+	Limit   int32
+	Offset  int32
 }
 
 func (q *Queries) GetAllContactMessages(ctx context.Context, arg GetAllContactMessagesParams) ([]ContactMessage, error) {
-	rows, err := q.db.Query(ctx, getAllContactMessages, arg.Status, arg.Limit, arg.Offset)
+	rows, err := q.db.Query(ctx, getAllContactMessages, arg.Column1, arg.Limit, arg.Offset)
 	if err != nil {
 		return nil, err
 	}

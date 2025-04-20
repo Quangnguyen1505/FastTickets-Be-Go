@@ -2,6 +2,7 @@ package contactmessage
 
 import (
 	"fmt"
+
 	"github.com/ntquang/ecommerce/internal/helper"
 
 	"github.com/gin-gonic/gin"
@@ -81,7 +82,7 @@ func (cm *cContactMessage) GetAllContactMessageStatus(ctx *gin.Context) {
 // @Failure      500     {object}  response.ErrResponse
 // @Router       /contact-messages/{id} [put]
 func (cm *cContactMessage) EditContactMessage(ctx *gin.Context) {
-	var params model.UpdateContactMessageParams
+	var params map[string]interface{}
 	if err := ctx.ShouldBindJSON(&params); err != nil {
 		fmt.Println("Lỗi bind JSON:", err)
 		global.Logger.Error("Error parse params contact message", zap.Error(err))
@@ -89,8 +90,15 @@ func (cm *cContactMessage) EditContactMessage(ctx *gin.Context) {
 		return
 	}
 
+	status, ok := params["status"].(float64)
+	if !ok {
+		global.Logger.Error("Missing or invalid status parameter")
+		response.ErrorResponse(ctx, response.ErrCodeParamInvalid, "", fmt.Errorf("Invalid or missing status"))
+		return
+	}
+
 	contactId := ctx.Param("id")
-	statusCode, err := services.ContactMessage().EditStatusContactMessage(ctx, contactId, &params)
+	statusCode, err := services.ContactMessage().EditStatusContactMessage(ctx, contactId, int16(status))
 	if err != nil {
 		global.Logger.Error("Error update contact message", zap.Error(err))
 		response.ErrorResponse(ctx, statusCode, "", fmt.Errorf(err.Error()))
@@ -142,4 +150,34 @@ func (cm *cContactMessage) DeleteContactMessage(ctx *gin.Context) {
 		return
 	}
 	response.SuccessResponse(ctx, 200, nil, "Delete Contact Message Successfully!")
+}
+
+// ContactMessage Documentation
+// @Summary      Send email to customer
+// @Description  When admin wants to send an email to a customer
+// @Tags         contactmessage
+// @Accept       json
+// @Produce      json
+// @Param        authorization header string true "authorization token"
+// @Param        x-client-id header string true "x-client-id user"
+// @Param        payload body      model.ResponseCustomer true  "Payload"
+// @Success      200     {object}  response.Response
+// @Failure      500     {object}  response.ErrResponse
+// @Router       /contact-messages/customer [post]
+func (c *cContactMessage) SendEmailToCustomer(ctx *gin.Context) {
+	var params model.ResponseCustomer
+	if err := ctx.ShouldBindJSON(&params); err != nil {
+		global.Logger.Error("Error parse params contact message", zap.Error(err))
+		response.ErrorResponse(ctx, response.ErrCodeParamInvalid, "", fmt.Errorf(err.Error()))
+		return
+	}
+
+	statusCode, err := services.ContactMessage().SendEmailToCustomer(ctx, &params)
+	if err != nil {
+		global.Logger.Error("Error send email to customer", zap.Error(err))
+		response.ErrorResponse(ctx, statusCode, "", fmt.Errorf(err.Error()))
+		return
+	}
+
+	response.SuccessResponse(ctx, 200, nil, "Send Email To Customer Successfully!")
 }

@@ -12,7 +12,15 @@ type UpdateContactMessageParams struct {
 }
 
 type ContactMessageQuery struct {
-	Limit  int   `json:"limit"`
-	Page   int   `json:"page"`
-	Status int16 `json:"status"`
+	Limit  int    `json:"limit"`
+	Page   int    `json:"page"`
+	Status *int16 `json:"status"`
+}
+
+type ResponseCustomer struct {
+	Name      string `json:"name"`
+	Email     string `json:"email"`
+	Message   string `json:"message"`
+	Response  string `json:"response"`
+	ContactId string `json:"contact_id"`
 }

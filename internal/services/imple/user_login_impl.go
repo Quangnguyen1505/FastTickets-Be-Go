@@ -150,6 +150,7 @@ func (s *sUserLogin) Login(ctx context.Context, in *model.LoginInput) (resultCod
 				"otp":  "11111",
 				"name": "Quang",
 			},
+			"Otp verification",
 		)
 		out.Message = "Send OTP 2FA To Email, pls get otp by email..."
 		return response.ErrCodeSuccess, out, err

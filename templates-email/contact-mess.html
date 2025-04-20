@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Thank You for Contacting FastTickets</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      color: #333;
+      background-color: #fff;
+    }
+
+    .container {
+      margin: 0 auto;
+      width: 100%;
+      max-width: 600px;
+      padding: 0 0px;
+      padding-bottom: 10px;
+      border-radius: 5px;
+      line-height: 1.8;
+    }
+
+    .header {
+      border-bottom: 1px solid #eee;
+    }
+
+    .header a {
+      font-size: 1.4em;
+      color: #000;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .content {
+      min-width: 700px;
+      overflow: auto;
+      line-height: 2;
+    }
+
+    .footer {
+      color: #aaa;
+      font-size: 0.8em;
+      line-height: 1;
+      font-weight: 300;
+    }
+
+    .email-info {
+      color: #666666;
+      font-weight: 400;
+      font-size: 13px;
+      line-height: 18px;
+      padding-bottom: 6px;
+    }
+
+    .email-info a {
+      text-decoration: none;
+      color: #00bc69;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Subject: Response to Your FastTickets Contact Message -->
+  <div class="container">
+    <div class="header">
+      <a>Thank You for Reaching Out to FastTickets</a>
+    </div>
+    <br />
+    <strong>Dear {{.name}},</strong>
+    <p>
+        Thank you for contacting FastTickets. We have received your request.
+      <br />
+      Below is a copy of your message:
+    </p>
+    <div style="background-color: #f4f4f4; padding: 10px; border-radius: 4px;">
+      <b>Your Message:</b>
+      <p>{{.message}}</p>
+    </div>
+    <br />
+    
+    <!-- Start of the answer section -->
+    <p style="font-size: 1em">
+      <strong>Our Response:</strong>
+      <p>{{.response}}</p>  
+    </p>
+    <!-- End of the answer section -->
+
+    <br />
+    <p style="font-size: 0.9em">
+        We aim to respond to all queries within 24-48 hours. Please feel free to call us at +84 342616749..
+      <br />
+      <strong>Thank you for your patience!</strong>
+      <br />
+      <br />
+      Best regards,
+      <br />
+      <strong>FastTickets</strong>
+      <br />
+      Fast Tickets
+    </p>
+
+    <hr style="border: none; border-top: 0.5px solid #131111" />
+    <div class="footer">
+      <p>This email can't receive replies.</p>
+      <p>
+        For more information about FastTickets, visit <strong>Fast Tickets</strong>
+      </p>
+    </div>
+  </div>
+  <div style="text-align: center">
+    <div class="email-info">
+      <span>
+        This email was sent to
+        <a href="mailto:{Email Address}">{Email Address}</a>
+      </span>
+    </div>
+    <div class="email-info">
+      <a href="/">FastTickets</a> | [Address] | [Zip Code/Pin Code], [Country Name]
+    </div>
+    <div class="email-info">
+      &copy; 2025 FastTickets. All rights reserved.
+    </div>
+  </div>
+</body>
+<!-- This template is created for FastTickets. -->
+</html>

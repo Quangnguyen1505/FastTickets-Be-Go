@@ -37,6 +37,9 @@ const (
 
 	//UUID
 	ErrParseUUID = 80002
+
+	//send mail
+	ErrorSendEmail = 90001
 )
 
 var msg = map[int]string{
@@ -76,4 +79,7 @@ var msg = map[int]string{
 
 	//uuid
 	ErrParseUUID: "Failed to parse UUID",
+
+	//send mail
+	ErrorSendEmail: "Failed to send email",
 }

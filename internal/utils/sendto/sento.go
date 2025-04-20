@@ -63,14 +63,14 @@ func SendTextEmailOtp(to []string, from string, otp string) error {
 
 func SendTemplateEmailOtp(
 	to []string, from string, htmlTemplate string,
-	dataTemplate map[string]interface{},
+	dataTemplate map[string]interface{}, subject string,
 ) error {
 	htmlBody, err := getMailTemplate(htmlTemplate, dataTemplate)
 	if err != nil {
 		return err
 	}
 
-	return send(to, from, htmlBody)
+	return send(to, from, htmlBody, subject)
 }
 
 func getMailTemplate(nameTemplate string, dataTemplate map[string]interface{}) (string, error) {
@@ -83,11 +83,11 @@ func getMailTemplate(nameTemplate string, dataTemplate map[string]interface{}) (
 	return htmlTemplate.String(), nil
 }
 
-func send(to []string, from string, htmlTemplate string) error {
+func send(to []string, from string, htmlTemplate string, subject string) error {
 	contextEmail := Mail{
 		From:    EmailAddress{Address: from, Name: "test"},
 		To:      to,
-		Subject: "Otp verification",
+		Subject: subject,
 		Body:    htmlTemplate,
 	}
 

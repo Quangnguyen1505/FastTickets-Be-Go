@@ -13,7 +13,7 @@ WHERE id = $1;
 -- name: GetAllContactMessages :many
 SELECT id, name, email, phone, message, status, created_at
 FROM contact_messages
-WHERE status = $1
+WHERE ($1 = -1 OR status = $1)
 ORDER BY created_at DESC
 LIMIT $2 OFFSET $3;
 
