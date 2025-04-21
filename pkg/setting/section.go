@@ -8,6 +8,8 @@ type Config struct {
 	Server       ServerSettings     `mapstructure:"server"`
 	JWT          JWTSettings        `mapstructure:"jwt"`
 	Oauth2Google Oauth2Google       `mapstructure:"oauth2Google"`
+	RabbitMQ     RabbitMQSettings   `mapstructure:"rabbitmq"`
+	Grpc         GrpcSettings       `mapstructure:"grpc"`
 }
 
 type ServerSettings struct {
@@ -56,4 +58,18 @@ type JWTSettings struct {
 type Oauth2Google struct {
 	CLIENT_ID     string `mapstructure:"clientId"`
 	CLIENT_SECRET string `mapstructure:"clientSecret"`
+}
+
+type RabbitMQSettings struct {
+	Username string `mapstructure:"rabbitmq_username"`
+	Password string `mapstructure:"rabbitmq_password"`
+	Host     string `mapstructure:"rabbitmq_host"`
+	Port     int    `mapstructure:"rabbitmq_port"`
+}
+
+type GrpcSettings struct {
+	Client struct {
+		Host string `mapstructure:"host"`
+		Port int    `mapstructure:"port"`
+	} `mapstructure:"client"`
 }

@@ -26,13 +26,6 @@ definitions:
         description: 'ISO 8601: "2025-04-08T17:30:00Z"'
         type: string
     type: object
-  model.LoginInput:
-    properties:
-      email:
-        type: string
-      password:
-        type: string
-    type: object
   model.NewOrUpdateMenuFunctionParams:
     properties:
       active:
@@ -44,30 +37,18 @@ definitions:
       url:
         type: string
     type: object
-  model.RegisterInput:
+  model.ResponseCustomer:
     properties:
-      verify_key:
+      contact_id:
         type: string
-      verify_purpose:
+      email:
         type: string
-      verify_type:
-        type: integer
-    type: object
-  model.SetupTwoFactorAuthInput:
-    properties:
-      two_factor_auth_type:
+      message:
         type: string
-      two_factor_email:
+      name:
         type: string
-      user_id:
-        type: integer
-    type: object
-  model.TwoFactorVerifycationInput:
-    properties:
-      two_factor_code:
+      response:
         type: string
-      user_id:
-        type: integer
     type: object
   model.UpdateContactMessageParams:
     properties:
@@ -89,20 +70,6 @@ definitions:
       start:
         type: string
       user_id:
-        type: string
-    type: object
-  model.UpdatePasswordInput:
-    properties:
-      password:
-        type: string
-      token:
-        type: string
-    type: object
-  model.VerifyInput:
-    properties:
-      verify_code:
-        type: string
-      verify_key:
         type: string
     type: object
   response.ErrResponse:
@@ -287,6 +254,42 @@ paths:
           schema:
             $ref: '#/definitions/response.ErrResponse'
       summary: Update contact message
+      tags:
+      - contactmessage
+  /contact-messages/customer:
+    post:
+      consumes:
+      - application/json
+      description: When admin wants to send an email to a customer
+      parameters:
+      - description: authorization token
+        in: header
+        name: authorization
+        required: true
+        type: string
+      - description: x-client-id user
+        in: header
+        name: x-client-id
+        required: true
+        type: string
+      - description: Payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/model.ResponseCustomer'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.ErrResponse'
+      summary: Send email to customer
       tags:
       - contactmessage
   /events:
@@ -565,170 +568,4 @@ paths:
       summary: Get all active menu functions
       tags:
       - menu function
-  /users/login:
-    post:
-      consumes:
-      - application/json
-      description: When user is login save dbs
-      parameters:
-      - description: payload
-        in: body
-        name: payload
-        required: true
-        schema:
-          $ref: '#/definitions/model.LoginInput'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/response.Response'
-        "500":
-          description: Internal Server Error
-          schema:
-            $ref: '#/definitions/response.ErrResponse'
-      summary: User Login
-      tags:
-      - account manager
-  /users/register:
-    post:
-      consumes:
-      - application/json
-      description: When user is registered send otp to email
-      parameters:
-      - description: payload
-        in: body
-        name: payload
-        required: true
-        schema:
-          $ref: '#/definitions/model.RegisterInput'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/response.Response'
-        "500":
-          description: Internal Server Error
-          schema:
-            $ref: '#/definitions/response.ErrResponse'
-      summary: User Registrasion
-      tags:
-      - account manager
-  /users/two-factor/setup:
-    post:
-      consumes:
-      - application/json
-      description: When user is login after 2 factor authentication
-      parameters:
-      - description: Authorization token
-        in: header
-        name: Authorization
-        required: true
-        type: string
-      - description: payload
-        in: body
-        name: payload
-        required: true
-        schema:
-          $ref: '#/definitions/model.SetupTwoFactorAuthInput'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/response.Response'
-        "500":
-          description: Internal Server Error
-          schema:
-            $ref: '#/definitions/response.ErrResponse'
-      summary: User 2FA
-      tags:
-      - account 2fa
-  /users/two-factor/verify:
-    post:
-      consumes:
-      - application/json
-      description: When user is login after enter code with pupose verify
-      parameters:
-      - description: Authorization token
-        in: header
-        name: Authorization
-        required: true
-        type: string
-      - description: payload
-        in: body
-        name: payload
-        required: true
-        schema:
-          $ref: '#/definitions/model.TwoFactorVerifycationInput'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/response.Response'
-        "500":
-          description: Internal Server Error
-          schema:
-            $ref: '#/definitions/response.ErrResponse'
-      summary: User Verify 2FA
-      tags:
-      - account 2fa
-  /users/updatePass:
-    post:
-      consumes:
-      - application/json
-      description: When user is VerifyOTP ok after Update Password
-      parameters:
-      - description: payload
-        in: body
-        name: payload
-        required: true
-        schema:
-          $ref: '#/definitions/model.UpdatePasswordInput'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/response.Response'
-        "500":
-          description: Internal Server Error
-          schema:
-            $ref: '#/definitions/response.ErrResponse'
-      summary: User Update Password
-      tags:
-      - account manager
-  /users/verifyOTP:
-    post:
-      consumes:
-      - application/json
-      description: When user is register after verify otp
-      parameters:
-      - description: payload
-        in: body
-        name: payload
-        required: true
-        schema:
-          $ref: '#/definitions/model.VerifyInput'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/response.Response'
-        "500":
-          description: Internal Server Error
-          schema:
-            $ref: '#/definitions/response.ErrResponse'
-      summary: User Verify OTP
-      tags:
-      - account manager
 swagger: "2.0"

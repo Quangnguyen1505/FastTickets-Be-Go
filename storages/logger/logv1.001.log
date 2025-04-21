@@ -701,3 +701,62 @@
 {"level":"INFO","time":"2025-04-20T14:32:49.997+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
 {"level":"INFO","time":"2025-04-20T14:32:50.002+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
 {"level":"INFO","time":"2025-04-20T14:32:50.086+0700","caller":"initialize/rabbitmq.go:23","msg":"RabbitMQ initialized successfully!"}
+{"level":"INFO","time":"2025-04-21T10:07:40.193+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-04-21T10:07:40.270+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-04-21T10:07:40.272+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-04-21T10:07:40.359+0700","caller":"initialize/rabbitmq.go:24","msg":"RabbitMQ initialized successfully!"}
+{"level":"INFO","time":"2025-04-21T10:24:20.882+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-04-21T10:24:20.946+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-04-21T10:24:20.954+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-04-21T10:24:21.028+0700","caller":"initialize/rabbitmq.go:24","msg":"RabbitMQ initialized successfully!"}
+{"level":"INFO","time":"2025-04-21T10:25:02.340+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-04-21T10:25:02.406+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-04-21T10:25:02.409+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-04-21T10:25:02.487+0700","caller":"initialize/rabbitmq.go:24","msg":"RabbitMQ initialized successfully!"}
+{"level":"INFO","time":"2025-04-21T11:23:05.072+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-04-21T11:23:05.132+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-04-21T11:23:05.134+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-04-21T11:23:05.200+0700","caller":"initialize/rabbitmq.go:25","msg":"RabbitMQ initialized successfully!"}
+{"level":"ERROR","time":"2025-04-21T11:23:05.292+0700","caller":"initialize/rabbitmq.go:54","msg":"Failed to bind queue:","error":"Exception (404) Reason: \"NOT_FOUND - no exchange 'email_exchange' in vhost '/'\"","stacktrace":"github.com/ntquang/ecommerce/internal/initialize.StartConsumerExDirect\n\tE:/OCR-GOLANG/github.com/ntquang/ecommerce/internal/initialize/rabbitmq.go:54\ngithub.com/ntquang/ecommerce/internal/initialize.Run\n\tE:/OCR-GOLANG/github.com/ntquang/ecommerce/internal/initialize/run.go:13\nmain.main\n\tE:/OCR-GOLANG/github.com/ntquang/ecommerce/cmd/server/main.go:31\nruntime.main\n\tD:/Install Software/Golang/src/runtime/proc.go:272"}
+{"level":"INFO","time":"2025-04-21T11:25:02.107+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-04-21T11:25:02.164+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-04-21T11:25:02.170+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-04-21T11:25:02.254+0700","caller":"initialize/rabbitmq.go:25","msg":"RabbitMQ initialized successfully!"}
+{"level":"ERROR","time":"2025-04-21T11:25:02.263+0700","caller":"initialize/rabbitmq.go:54","msg":"Failed to bind queue:","error":"Exception (404) Reason: \"NOT_FOUND - no exchange 'email_exchange' in vhost '/'\"","stacktrace":"github.com/ntquang/ecommerce/internal/initialize.StartConsumerExDirect\n\tE:/OCR-GOLANG/github.com/ntquang/ecommerce/internal/initialize/rabbitmq.go:54\ngithub.com/ntquang/ecommerce/internal/initialize.Run\n\tE:/OCR-GOLANG/github.com/ntquang/ecommerce/internal/initialize/run.go:13\nmain.main\n\tE:/OCR-GOLANG/github.com/ntquang/ecommerce/cmd/server/main.go:31\nruntime.main\n\tD:/Install Software/Golang/src/runtime/proc.go:272"}
+{"level":"INFO","time":"2025-04-21T11:30:50.023+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-04-21T11:30:50.081+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-04-21T11:30:50.085+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-04-21T11:30:50.164+0700","caller":"initialize/rabbitmq.go:25","msg":"RabbitMQ initialized successfully!"}
+{"level":"INFO","time":"2025-04-21T11:30:50.184+0700","caller":"initialize/rabbitmq.go:101","msg":"Consumer started and listening to messages..."}
+{"level":"INFO","time":"2025-04-21T11:42:36.191+0700","caller":"initialize/rabbitmq.go:90","msg":"Received message","message":"\"send user booking success\""}
+{"level":"INFO","time":"2025-04-21T11:51:38.125+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-04-21T11:51:38.207+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-04-21T11:51:38.209+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-04-21T11:51:38.288+0700","caller":"initialize/rabbitmq.go:34","msg":"RabbitMQ initialized successfully!"}
+{"level":"INFO","time":"2025-04-21T11:51:38.304+0700","caller":"initialize/rabbitmq.go:123","msg":"Consumer started and listening to messages..."}
+{"level":"INFO","time":"2025-04-21T11:52:04.798+0700","caller":"initialize/rabbitmq.go:107","msg":"Parsed message","userId":"12323","movieTitle":"phim hàm","roomName":"phòng 1","showDate":"2023-10-10","startTime":"10:00:00"}
+{"level":"INFO","time":"2025-04-21T16:08:06.496+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-04-21T16:08:06.587+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-04-21T16:08:06.590+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-04-21T16:08:06.686+0700","caller":"initialize/rabbitmq.go:47","msg":"RabbitMQ initialized successfully!"}
+{"level":"INFO","time":"2025-04-21T16:08:06.701+0700","caller":"initialize/rabbitmq.go:142","msg":"Consumer started and listening to messages..."}
+{"level":"INFO","time":"2025-04-21T16:12:12.262+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-04-21T16:12:12.321+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-04-21T16:12:12.324+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-04-21T16:12:12.403+0700","caller":"initialize/rabbitmq.go:47","msg":"RabbitMQ initialized successfully!"}
+{"level":"INFO","time":"2025-04-21T16:12:12.415+0700","caller":"initialize/rabbitmq.go:142","msg":"Consumer started and listening to messages..."}
+{"level":"INFO","time":"2025-04-21T16:17:25.893+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-04-21T16:17:25.955+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-04-21T16:17:25.960+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-04-21T16:17:26.035+0700","caller":"initialize/rabbitmq.go:47","msg":"RabbitMQ initialized successfully!"}
+{"level":"INFO","time":"2025-04-21T16:17:26.046+0700","caller":"initialize/rabbitmq.go:142","msg":"Consumer started and listening to messages..."}
+{"level":"INFO","time":"2025-04-21T16:23:15.659+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-04-21T16:23:15.731+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-04-21T16:23:15.734+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-04-21T16:23:15.820+0700","caller":"initialize/rabbitmq.go:48","msg":"RabbitMQ initialized successfully!"}
+{"level":"INFO","time":"2025-04-21T16:23:15.836+0700","caller":"initialize/rabbitmq.go:143","msg":"Consumer started and listening to messages..."}
+{"level":"INFO","time":"2025-04-21T16:25:59.186+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-04-21T16:25:59.319+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-04-21T16:25:59.322+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-04-21T16:25:59.414+0700","caller":"initialize/rabbitmq.go:48","msg":"RabbitMQ initialized successfully!"}
+{"level":"INFO","time":"2025-04-21T16:25:59.425+0700","caller":"initialize/rabbitmq.go:143","msg":"Consumer started and listening to messages..."}

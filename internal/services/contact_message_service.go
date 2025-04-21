@@ -9,10 +9,10 @@ import (
 
 type (
 	IContactMessage interface {
-		GetAllContactMessageByStatus(ctx context.Context, query model.ContactMessageQuery) (resultCode int, out []database.ContactMessage, err error)
-		NewContactMessage(ctx context.Context, in *model.AddNewContactMessageParams) (resultCode int, out database.ContactMessage, err error)
+		GetAllContactMessageByStatus(ctx context.Context, query model.ContactMessageQuery) (resultCode int, out []database.PreGoContactMessage, err error)
+		NewContactMessage(ctx context.Context, in *model.AddNewContactMessageParams) (resultCode int, out database.PreGoContactMessage, err error)
 		EditStatusContactMessage(ctx context.Context, id string, status int16) (resultCode int, err error)
-		GetContactMessageById(ctx context.Context, id string) (resultCode int, out database.ContactMessage, err error)
+		GetContactMessageById(ctx context.Context, id string) (resultCode int, out database.PreGoContactMessage, err error)
 		DeleteContactMessage(ctx context.Context, id string) (resultCode int, err error)
 		SendEmailToCustomer(ctx context.Context, in *model.ResponseCustomer) (resultCode int, err error)
 	}

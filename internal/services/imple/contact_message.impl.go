@@ -23,7 +23,7 @@ func NewContactMessage(r *database.Queries) *sContactMessage {
 }
 
 // implement
-func (s *sContactMessage) GetAllContactMessageByStatus(ctx context.Context, query model.ContactMessageQuery) (resultCode int, out []database.ContactMessage, err error) {
+func (s *sContactMessage) GetAllContactMessageByStatus(ctx context.Context, query model.ContactMessageQuery) (resultCode int, out []database.PreGoContactMessage, err error) {
 	limit, page := query.Limit, query.Page
 	offset := (page - 1) * limit
 
@@ -51,7 +51,7 @@ func (s *sContactMessage) GetAllContactMessageByStatus(ctx context.Context, quer
 	return 200, contactMessages, nil
 }
 
-func (s *sContactMessage) NewContactMessage(ctx context.Context, in *model.AddNewContactMessageParams) (resultCode int, out database.ContactMessage, err error) {
+func (s *sContactMessage) NewContactMessage(ctx context.Context, in *model.AddNewContactMessageParams) (resultCode int, out database.PreGoContactMessage, err error) {
 	contactMessage, err := s.r.CreateContactMessage(ctx, database.CreateContactMessageParams{
 		Name:    in.Name,
 		Email:   in.Email,
@@ -84,7 +84,7 @@ func (s *sContactMessage) EditStatusContactMessage(ctx context.Context, id strin
 	return 200, nil
 }
 
-func (s *sContactMessage) GetContactMessageById(ctx context.Context, id string) (resultCode int, out database.ContactMessage, err error) {
+func (s *sContactMessage) GetContactMessageById(ctx context.Context, id string) (resultCode int, out database.PreGoContactMessage, err error) {
 	uuidID, err := ParseUUID(id)
 	if err != nil {
 		return response.ErrParseUUID, out, err

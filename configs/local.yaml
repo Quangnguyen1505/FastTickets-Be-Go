@@ -31,3 +31,12 @@ jwt:
 oauth2Google:
   clientSecret: ${GOOGLE_CLIENT_SECRET}
   clientId: ${GOOGLE_CLIENT_ID}
+rabbitmq:
+  rabbitmq_username: guest
+  rabbitmq_password: guest
+  rabbitmq_host: localhost
+  rabbitmq_port: 5672
+grpc:
+  client: 
+    host: localhost
+    port: 8083

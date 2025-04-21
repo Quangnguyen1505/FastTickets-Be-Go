@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Xác nhận đặt vé thành công</title>
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #f7f7f7; padding: 20px;">
+  <div style="max-width: 700px; margin: auto; background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+    <div style="text-align: center;">
+      <img src="./img-title.svg" alt="FastTicket Logo" style="max-height: 50px; margin-bottom: 10px;" />
+      <h2 style="color: #333; margin: 5px 0;">FASTTICKETS CINEMAS</h2>
+      <p style="margin: 0;">Fast Tickets Hồ Chí Minh</p>
+      <h3 style="color: #8e24aa; margin-top: 20px;">XÁC NHẬN ĐẶT VÉ THÀNH CÔNG</h3>
+    </div>
+
+    <hr style="margin: 20px 0;">
+
+    <p><strong>MÃ VÉ:</strong> <span style="color: #e53935;">{{.ticket_code}}</span></p>
+    <p><strong>PHIM:</strong> {{.movie_title}} ({{.age_rating}})</p>
+    <p><strong>SUẤT CHIẾU:</strong> {{.show_date}} {{.start_time}}</p>
+    <p><strong>PHÒNG CHIẾU:</strong> {{.room_name}}</p>
+    <p><strong>RẠP:</strong> Fast Tickets Hồ Chí Minh</p>
+    <p><strong>SỐ GHẾ:</strong> {{.total_seats}}</p>
+
+    <table width="100%" style="border-collapse: collapse; margin-top: 20px;">
+      <thead>
+        <tr style="background-color: #8e24aa; color: #fff;">
+          <th style="padding: 8px;">STT</th>
+          <th style="padding: 8px;">MẶT HÀNG</th>
+          <th style="padding: 8px;">SỐ LƯỢNG</th>
+          <th style="padding: 8px;">ĐƠN GIÁ</th>
+          <th style="padding: 8px;">THÀNH TIỀN (VNĐ)</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{range $index, $item := .SeatDetails}}
+        <tr style="text-align: center;">
+          <td style="padding: 8px;">{{$item.STT}}</td>
+          <td style="padding: 8px;">Ghế {{$item.Seat}}</td>
+          <td style="padding: 8px;">{{$item.Quantity}}</td>
+          <td style="padding: 8px;">{{$item.Price}}</td>
+          <td style="padding: 8px;">{{$item.Price}}</td>
+        </tr>
+        {{end}}
+        <tr style="font-weight: bold; background-color: #eee;">
+          <td colspan="4" style="padding: 8px; text-align: right;">TỔNG TIỀN (VNĐ)</td>
+          <td style="padding: 8px; text-align: center; color: #e53935;">{{.TotalPrice}}</td>
+        </tr>
+      </tbody>
+      
+    </table>
+
+    <p style="margin-top: 30px;">Cảm ơn Quý khách đã đặt vé xem phim tại FastTicket. Chúc Quý khách một buổi xem phim vui vẻ!</p>
+  </div>
+</body>
+</html>

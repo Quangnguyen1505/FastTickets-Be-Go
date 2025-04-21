@@ -8,5 +8,3 @@ sql:
         package: "database"
         out: "internal/database"
         sql_package: "pgx/v5"
-        rename:
-          GetAllContactMessagesParams.Column1: Status

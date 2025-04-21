@@ -10,9 +10,8 @@ import (
 )
 
 var (
-	Config setting.Config
-	Logger *logger.LoggerZap
-	// Pdb           *gorm.DBza
+	Config          setting.Config
+	Logger          *logger.LoggerZap
 	Pdbc            *pgxpool.Pool
 	Redis           *redis.Client
 	RabbitMQChannel *amqp.Channel

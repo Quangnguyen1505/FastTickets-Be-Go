@@ -11,10 +11,6 @@ func InitServiceInterface() {
 	queries := database.New(global.Pdbc)
 	// Init Interface here
 
-	//user service interface
-	services.InitUserLogin(imple.NewUserLoginImpl(queries))
-	//user admin interface
-	services.InitUserAdmin(imple.NewUserAdminImpl(queries))
 	// event service interface
 	services.InitEvent(imple.NewEventImpl(queries))
 	// menu function service interface

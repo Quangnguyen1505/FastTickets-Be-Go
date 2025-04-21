@@ -21,8 +21,6 @@ func Initrouter() *gin.Engine {
 		r.Use(gin.Logger(), gin.Recovery())
 	}
 
-	manageRouter := routers.RouterGroupApp.Manage
-	userRouter := routers.RouterGroupApp.User
 	oauth2Router := routers.RouterGroupApp.Oauth2
 	eventRouter := routers.RouterGroupApp.Event
 	menuFunctionRouter := routers.RouterGroupApp.MenuFunction
@@ -32,14 +30,6 @@ func Initrouter() *gin.Engine {
 	MainGroup := r.Group("/v1/2024")
 	{
 		MainGroup.GET("/checkStatus") //tracking monitor
-	}
-	{
-		userRouter.InitUserRouter(MainGroup)
-		userRouter.InitProductRouter(MainGroup)
-	}
-	{
-		manageRouter.InitAdminRouter(MainGroup)
-		manageRouter.InitUserRouter(MainGroup)
 	}
 	{
 		oauth2Router.InitOauth2Router(MainGroup)
