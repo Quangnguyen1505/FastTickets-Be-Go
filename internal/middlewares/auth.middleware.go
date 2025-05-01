@@ -16,6 +16,7 @@ type UserTokens struct {
 	AccessToken  string `json:"accessToken"`
 	RefreshToken string `json:"refreshToken"`
 	PublicKey    string `json:"publicKey"`
+	RoleId       string `json:"roleId"`
 }
 
 func Authentication() gin.HandlerFunc {
@@ -71,9 +72,54 @@ func Authentication() gin.HandlerFunc {
 			return
 		}
 
-		log.Println("Claims UUID:: ", claims.Subject)                                //11clitoken...
-		ctx := context.WithValue(c.Request.Context(), "subjectUUID", claims.Subject) // create new value in context
-		c.Request = c.Request.WithContext(ctx)                                       // create request new if conext update
+		log.Println("Claims UUID:: ", claims.Subject) //userid
+		// Tạo context mới và thêm cả subjectUUID và roleId vào đó
+		ctx := context.WithValue(c.Request.Context(), "subjectUUID", claims.Subject)
+		ctx = context.WithValue(ctx, "roleId", fmt.Sprintf("%v", claims.RoleId))
+
+		// Cập nhật context trong request
+		c.Request = c.Request.WithContext(ctx)
+
+		c.Next()
+	}
+}
+
+func CheckPermission() gin.HandlerFunc {
+	// Add authentication logic here
+	return func(c *gin.Context) {
+		roleId, ok := c.Request.Context().Value("roleId").(string)
+		fmt.Println("roleId", roleId)
+		if !ok {
+			c.AbortWithStatusJSON(401, gin.H{
+				"code":        40001,
+				"err":         "Missing Role",
+				"description": "Role ID not found in context",
+			})
+			return
+		}
+
+		userId := c.GetHeader("x-client-id")
+		keyUser := fmt.Sprintf("%s%s", consts.CACHE_USER, userId)
+
+		value, err := cache.GetFieldHashCache(c.Request.Context(), keyUser, "roleId")
+		if err != nil {
+			c.AbortWithStatusJSON(500, gin.H{
+				"code":        response.ErrCodeRedisGetFailed,
+				"err":         "get hash cache",
+				"description": "",
+			})
+			return
+		}
+		fmt.Println("roleId redis ", value)
+		fmt.Println("roleId context ", roleId)
+		if value != roleId {
+			c.AbortWithStatusJSON(401, gin.H{
+				"code":        40001,
+				"err":         "Unauthorized",
+				"description": "Permission denied",
+			})
+			return
+		}
 		c.Next()
 	}
 }

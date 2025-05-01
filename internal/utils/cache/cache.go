@@ -44,3 +44,13 @@ func GetHashCache(ctx context.Context, keyUser string, obj interface{}) error {
 	}
 	return nil
 }
+
+func GetFieldHashCache(ctx context.Context, keyUser string, field string) (string, error) {
+	JwtTokenRedis, err := global.Redis.HGet(ctx, keyUser, field).Result()
+	if err != nil {
+		return "", err
+	} else if err == redis.Nil {
+		return "", fmt.Errorf("key %s not found", keyUser)
+	}
+	return JwtTokenRedis, nil
+}

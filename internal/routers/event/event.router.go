@@ -21,6 +21,7 @@ func (mktC *EventRouter) InitEventRouter(Router *gin.RouterGroup) {
 	uploadClient := pb.NewUploadServiceClient(global.Grpc)
 	privateEventRouter := Router.Group("/events")
 	privateEventRouter.Use(middlewares.Authentication())
+	privateEventRouter.Use(middlewares.CheckPermission())
 	{
 		privateEventRouter.PUT(
 			"/:id",

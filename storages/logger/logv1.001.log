@@ -760,3 +760,110 @@
 {"level":"INFO","time":"2025-04-21T16:25:59.322+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
 {"level":"INFO","time":"2025-04-21T16:25:59.414+0700","caller":"initialize/rabbitmq.go:48","msg":"RabbitMQ initialized successfully!"}
 {"level":"INFO","time":"2025-04-21T16:25:59.425+0700","caller":"initialize/rabbitmq.go:143","msg":"Consumer started and listening to messages..."}
+{"level":"INFO","time":"2025-04-22T14:39:13.174+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-04-22T14:39:13.272+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-04-22T14:39:13.275+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-04-22T14:39:13.350+0700","caller":"initialize/rabbitmq.go:48","msg":"RabbitMQ initialized successfully!"}
+{"level":"INFO","time":"2025-04-22T14:39:13.443+0700","caller":"initialize/rabbitmq.go:143","msg":"Consumer started and listening to messages..."}
+{"level":"INFO","time":"2025-04-22T23:07:40.453+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-04-22T23:07:40.514+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-04-22T23:07:40.516+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-04-22T23:07:40.593+0700","caller":"initialize/rabbitmq.go:48","msg":"RabbitMQ initialized successfully!"}
+{"level":"INFO","time":"2025-04-22T23:07:40.602+0700","caller":"initialize/rabbitmq.go:143","msg":"Consumer started and listening to messages..."}
+{"level":"INFO","time":"2025-04-23T13:19:25.585+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-04-23T13:19:25.702+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-04-23T13:19:25.704+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-04-23T13:26:06.363+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-04-23T13:26:06.466+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-04-23T13:26:06.470+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-04-23T13:26:06.555+0700","caller":"initialize/rabbitmq.go:48","msg":"RabbitMQ initialized successfully!"}
+{"level":"INFO","time":"2025-04-23T13:26:06.572+0700","caller":"initialize/rabbitmq.go:143","msg":"Consumer started and listening to messages..."}
+{"level":"INFO","time":"2025-04-23T13:27:59.612+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-04-23T13:27:59.670+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-04-23T13:27:59.672+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-04-23T13:27:59.750+0700","caller":"initialize/rabbitmq.go:48","msg":"RabbitMQ initialized successfully!"}
+{"level":"INFO","time":"2025-04-23T13:27:59.767+0700","caller":"initialize/rabbitmq.go:143","msg":"Consumer started and listening to messages..."}
+{"level":"INFO","time":"2025-04-23T13:38:05.217+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-04-23T13:38:05.300+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-04-23T13:38:05.303+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-04-23T13:38:05.408+0700","caller":"initialize/rabbitmq.go:48","msg":"RabbitMQ initialized successfully!"}
+{"level":"INFO","time":"2025-04-23T13:38:05.424+0700","caller":"initialize/rabbitmq.go:143","msg":"Consumer started and listening to messages..."}
+{"level":"INFO","time":"2025-04-23T13:40:49.202+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-04-23T13:40:49.289+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-04-23T13:40:49.293+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-04-23T13:40:49.362+0700","caller":"initialize/rabbitmq.go:48","msg":"RabbitMQ initialized successfully!"}
+{"level":"INFO","time":"2025-04-23T13:40:49.375+0700","caller":"initialize/rabbitmq.go:143","msg":"Consumer started and listening to messages..."}
+{"level":"INFO","time":"2025-04-23T13:42:20.703+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-04-23T13:42:20.762+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-04-23T13:42:20.765+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-04-23T13:42:20.845+0700","caller":"initialize/rabbitmq.go:48","msg":"RabbitMQ initialized successfully!"}
+{"level":"INFO","time":"2025-04-23T13:42:20.856+0700","caller":"initialize/rabbitmq.go:143","msg":"Consumer started and listening to messages..."}
+{"level":"INFO","time":"2025-04-23T13:43:41.763+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-04-23T13:43:41.824+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-04-23T13:43:41.827+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-04-23T13:43:41.910+0700","caller":"initialize/rabbitmq.go:48","msg":"RabbitMQ initialized successfully!"}
+{"level":"INFO","time":"2025-04-23T13:43:41.921+0700","caller":"initialize/rabbitmq.go:143","msg":"Consumer started and listening to messages..."}
+{"level":"INFO","time":"2025-04-23T13:47:40.423+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-04-23T13:47:40.520+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-04-23T13:47:40.524+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-04-23T13:47:40.614+0700","caller":"initialize/rabbitmq.go:48","msg":"RabbitMQ initialized successfully!"}
+{"level":"INFO","time":"2025-04-23T13:47:40.623+0700","caller":"initialize/rabbitmq.go:143","msg":"Consumer started and listening to messages..."}
+{"level":"INFO","time":"2025-04-23T21:20:40.647+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-04-23T21:20:40.731+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-04-23T21:20:40.733+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-04-23T21:20:40.815+0700","caller":"initialize/rabbitmq.go:48","msg":"RabbitMQ initialized successfully!"}
+{"level":"INFO","time":"2025-04-23T21:20:40.932+0700","caller":"initialize/rabbitmq.go:143","msg":"Consumer started and listening to messages..."}
+{"level":"INFO","time":"2025-04-24T16:03:06.778+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-04-24T16:03:07.081+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-04-24T16:03:07.085+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-04-24T16:05:05.865+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-04-24T16:05:05.918+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-04-24T16:05:05.924+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-04-24T16:05:05.999+0700","caller":"initialize/rabbitmq.go:48","msg":"RabbitMQ initialized successfully!"}
+{"level":"INFO","time":"2025-04-24T16:05:06.010+0700","caller":"initialize/rabbitmq.go:143","msg":"Consumer started and listening to messages..."}
+{"level":"INFO","time":"2025-04-25T13:06:36.860+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-04-25T13:06:36.935+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-04-25T13:06:36.938+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-04-25T13:06:37.010+0700","caller":"initialize/rabbitmq.go:48","msg":"RabbitMQ initialized successfully!"}
+{"level":"INFO","time":"2025-04-25T13:06:37.085+0700","caller":"initialize/rabbitmq.go:143","msg":"Consumer started and listening to messages..."}
+{"level":"INFO","time":"2025-04-26T12:56:28.083+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-04-26T12:56:28.168+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-04-26T12:56:28.170+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-04-26T12:56:28.295+0700","caller":"initialize/rabbitmq.go:48","msg":"RabbitMQ initialized successfully!"}
+{"level":"INFO","time":"2025-04-26T12:56:28.348+0700","caller":"initialize/rabbitmq.go:143","msg":"Consumer started and listening to messages..."}
+{"level":"INFO","time":"2025-04-26T17:32:26.524+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-04-26T17:32:26.614+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-04-26T17:32:26.615+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-04-26T17:32:26.687+0700","caller":"initialize/rabbitmq.go:28","msg":"RabbitMQ initialized successfully!"}
+{"level":"INFO","time":"2025-04-26T17:32:26.772+0700","caller":"helper/consumer-rabbirmq.go:72","msg":"Consumer started for queue: email_queue"}
+{"level":"INFO","time":"2025-04-26T17:32:26.917+0700","caller":"helper/consumer-rabbirmq.go:72","msg":"Consumer started for queue: reset_password_queue"}
+{"level":"INFO","time":"2025-04-26T17:38:49.268+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-04-26T17:38:49.401+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-04-26T17:38:49.406+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-04-26T17:38:49.529+0700","caller":"initialize/rabbitmq.go:28","msg":"RabbitMQ initialized successfully!"}
+{"level":"INFO","time":"2025-04-26T17:38:49.580+0700","caller":"helper/consumer-rabbirmq.go:72","msg":"Consumer started for queue: email_queue"}
+{"level":"INFO","time":"2025-04-26T17:38:49.597+0700","caller":"helper/consumer-rabbirmq.go:72","msg":"Consumer started for queue: reset_password_queue"}
+{"level":"INFO","time":"2025-04-26T17:45:35.730+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-04-26T17:45:35.812+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-04-26T17:45:35.814+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-04-26T17:45:35.917+0700","caller":"initialize/rabbitmq.go:28","msg":"RabbitMQ initialized successfully!"}
+{"level":"INFO","time":"2025-04-26T17:45:35.928+0700","caller":"helper/consumer-rabbirmq.go:72","msg":"Consumer started for queue: email_queue"}
+{"level":"INFO","time":"2025-04-26T17:45:35.942+0700","caller":"helper/consumer-rabbirmq.go:72","msg":"Consumer started for queue: reset_password_queue"}
+{"level":"INFO","time":"2025-04-26T17:48:35.410+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-04-26T17:48:35.601+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-04-26T17:48:35.605+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-04-26T17:48:35.677+0700","caller":"initialize/rabbitmq.go:28","msg":"RabbitMQ initialized successfully!"}
+{"level":"INFO","time":"2025-04-26T17:48:35.686+0700","caller":"helper/consumer-rabbirmq.go:72","msg":"Consumer started for queue: email_queue"}
+{"level":"INFO","time":"2025-04-26T17:48:35.698+0700","caller":"helper/consumer-rabbirmq.go:72","msg":"Consumer started for queue: reset_password_queue"}
+{"level":"INFO","time":"2025-04-27T18:42:50.188+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-04-27T18:42:50.238+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-04-27T18:42:50.241+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-04-27T18:42:50.317+0700","caller":"initialize/rabbitmq.go:28","msg":"RabbitMQ initialized successfully!"}
+{"level":"INFO","time":"2025-04-27T18:42:50.326+0700","caller":"helper/consumer-rabbirmq.go:72","msg":"Consumer started for queue: email_queue"}
+{"level":"INFO","time":"2025-04-27T18:42:50.335+0700","caller":"helper/consumer-rabbirmq.go:72","msg":"Consumer started for queue: reset_password_queue"}
+{"level":"INFO","time":"2025-04-30T15:55:48.508+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-04-30T15:55:48.550+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-04-30T15:55:48.554+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-04-30T15:55:48.614+0700","caller":"initialize/rabbitmq.go:28","msg":"RabbitMQ initialized successfully!"}
+{"level":"INFO","time":"2025-04-30T15:55:48.641+0700","caller":"helper/consumer-rabbirmq.go:72","msg":"Consumer started for queue: email_queue"}
+{"level":"INFO","time":"2025-04-30T15:55:48.651+0700","caller":"helper/consumer-rabbirmq.go:72","msg":"Consumer started for queue: reset_password_queue"}

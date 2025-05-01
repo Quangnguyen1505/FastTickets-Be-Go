@@ -17,6 +17,7 @@ func (cMR *ContactMessageRouter) InitContactMessage(Router *gin.RouterGroup) {
 
 	privateContactMessageRouter := Router.Group("/contact-messages")
 	privateContactMessageRouter.Use(middlewares.Authentication())
+	privateContactMessageRouter.Use(middlewares.CheckPermission())
 	{
 		privateContactMessageRouter.GET("", contactmessage.ContactMessage.GetAllContactMessageStatus)
 		privateContactMessageRouter.PUT("/:id", contactmessage.ContactMessage.EditContactMessage)

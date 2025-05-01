@@ -3,6 +3,7 @@ package menufunction
 import (
 	"github.com/gin-gonic/gin"
 	MenuFunc "github.com/ntquang/ecommerce/internal/controller/menu_function"
+	"github.com/ntquang/ecommerce/internal/middlewares"
 )
 
 type MenuFunctionRouter struct{}
@@ -15,6 +16,8 @@ func (menuFunc *MenuFunctionRouter) InitMenufunctionRouter(Router *gin.RouterGro
 	}
 
 	privateMenuFuntion := Router.Group("/menu-functions")
+	privateMenuFuntion.Use(middlewares.Authentication())
+	privateMenuFuntion.Use(middlewares.CheckPermission())
 	{
 		privateMenuFuntion.GET("", MenuFunc.MenuFunc.GetAllMenuFunctions)
 		privateMenuFuntion.POST("", MenuFunc.MenuFunc.NewMenuFunctions)

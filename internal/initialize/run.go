@@ -10,7 +10,6 @@ func Run() *gin.Engine {
 	InitServiceInterface()
 	InitGrpcClient()
 	InitRabbitMQ()
-	StartConsumerExDirect()
 	InitOauth2()
 	r := Initrouter()
 

@@ -12,6 +12,11 @@ type PayLoadClams struct {
 	jwt.RegisteredClaims
 }
 
+type CustomClaims struct {
+	RoleId int `json:"roleId"`
+	jwt.RegisteredClaims
+}
+
 func generateTokenJWT(payload jwt.Claims) (string, error) {
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, payload)
 	return token.SignedString([]byte(global.Config.JWT.API_SERCERT_KEY))
@@ -41,24 +46,44 @@ func CreateToken(uuidToken string) (string, error) {
 	})
 }
 
-func ParseJwtTokenSubject(token string, publickey string) (*jwt.RegisteredClaims, error) {
-	tokenClaims, err := jwt.ParseWithClaims(token, &jwt.RegisteredClaims{}, func(JwtToken *jwt.Token) (interface{}, error) {
+// func ParseJwtTokenSubject(token string, publickey string) (*jwt.RegisteredClaims, error) {
+// 	tokenClaims, err := jwt.ParseWithClaims(token, &jwt.RegisteredClaims{}, func(JwtToken *jwt.Token) (interface{}, error) {
+// 		return []byte(publickey), nil
+// 	})
+// 	if tokenClaims != nil {
+// 		if claims, ok := tokenClaims.Claims.(*jwt.RegisteredClaims); ok && tokenClaims.Valid {
+// 			return claims, nil
+// 		}
+// 	}
+// 	return nil, err
+// 	// Parse the token with the correct claims type
+// }
+
+func ParseJwtTokenSubject(token string, publickey string) (*CustomClaims, error) {
+	tokenClaims, err := jwt.ParseWithClaims(token, &CustomClaims{}, func(JwtToken *jwt.Token) (interface{}, error) {
 		return []byte(publickey), nil
 	})
-	if tokenClaims != nil {
-		if claims, ok := tokenClaims.Claims.(*jwt.RegisteredClaims); ok && tokenClaims.Valid {
-			return claims, nil
-		}
-	}
-	return nil, err
-	// Parse the token with the correct claims type
-}
 
-// validate jwt token by subject
-func VerifyToken(token string, publickey string) (*jwt.RegisteredClaims, error) {
-	claims, err := ParseJwtTokenSubject(token, publickey)
 	if err != nil {
 		return nil, err
 	}
-	return claims, nil
+
+	if claims, ok := tokenClaims.Claims.(*CustomClaims); ok && tokenClaims.Valid {
+		return claims, nil
+	}
+
+	return nil, err
+}
+
+// validate jwt token by subject
+//
+//	func VerifyToken(token string, publickey string) (*jwt.RegisteredClaims, error) {
+//		claims, err := ParseJwtTokenSubject(token, publickey)
+//		if err != nil {
+//			return nil, err
+//		}
+//		return claims, nil
+//	}
+func VerifyToken(token string, publickey string) (*CustomClaims, error) {
+	return ParseJwtTokenSubject(token, publickey)
 }
