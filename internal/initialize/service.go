@@ -12,7 +12,7 @@ func InitServiceInterface() {
 	// Init Interface here
 
 	// event service interface
-	services.InitEvent(imple.NewEventImpl(queries))
+	services.InitEvent(imple.NewEventImpl(queries, global.Pdbc))
 	// menu function service interface
 	services.InitMenuFunction(imple.NewMenuFunctionImpl(queries))
 	// contact message service interface

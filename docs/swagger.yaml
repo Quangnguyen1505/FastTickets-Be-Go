@@ -352,6 +352,16 @@ paths:
       - application/json
       description: When admin wants to delete an event
       parameters:
+      - description: authorization token
+        in: header
+        name: authorization
+        required: true
+        type: string
+      - description: x-client-id user
+        in: header
+        name: x-client-id
+        required: true
+        type: string
       - description: Event ID
         in: path
         name: id
@@ -376,6 +386,16 @@ paths:
       - application/json
       description: When admin wants to get an event by ID
       parameters:
+      - description: authorization token
+        in: header
+        name: authorization
+        required: true
+        type: string
+      - description: x-client-id user
+        in: header
+        name: x-client-id
+        required: true
+        type: string
       - description: Event ID
         in: path
         name: id
@@ -423,6 +443,106 @@ paths:
           schema:
             $ref: '#/definitions/response.ErrResponse'
       summary: Update event
+      tags:
+      - event
+  /events/{id}/like:
+    post:
+      consumes:
+      - application/json
+      description: When a user likes an event
+      parameters:
+      - description: Event ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: authorization token
+        in: header
+        name: authorization
+        required: true
+        type: string
+      - description: x-client-id user
+        in: header
+        name: x-client-id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.ErrResponse'
+      summary: Like an event
+      tags:
+      - event
+  /events/{id}/unlike:
+    delete:
+      consumes:
+      - application/json
+      description: When a user unlikes an event
+      parameters:
+      - description: Event ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: authorization token
+        in: header
+        name: authorization
+        required: true
+        type: string
+      - description: x-client-id user
+        in: header
+        name: x-client-id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.ErrResponse'
+      summary: Unlike an event
+      tags:
+      - event
+  /events/users:
+    get:
+      consumes:
+      - application/json
+      description: get events like by user
+      parameters:
+      - description: authorization token
+        in: header
+        name: authorization
+        required: true
+        type: string
+      - description: x-client-id user
+        in: header
+        name: x-client-id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.ErrResponse'
+      summary: get events like by user
       tags:
       - event
   /menu-function/{id}:

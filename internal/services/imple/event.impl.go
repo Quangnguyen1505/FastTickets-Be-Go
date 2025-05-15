@@ -3,43 +3,46 @@ package imple
 import (
 	"context"
 	"database/sql"
+	"encoding/json"
 	"errors"
 	"fmt"
 
 	"github.com/google/uuid"
 	"github.com/jackc/pgx/v5/pgtype"
-	"github.com/ntquang/ecommerce/response"
-
+	"github.com/jackc/pgx/v5/pgxpool"
+	"github.com/ntquang/ecommerce/global"
+	consts "github.com/ntquang/ecommerce/internal/const"
 	"github.com/ntquang/ecommerce/internal/database"
+	"github.com/ntquang/ecommerce/internal/helper"
 	"github.com/ntquang/ecommerce/internal/model"
+	"github.com/ntquang/ecommerce/response"
+	"go.uber.org/zap"
 )
 
 type sEvent struct {
-	r *database.Queries
+	r  *database.Queries
+	db *pgxpool.Pool
 }
 
-func NewEventImpl(r *database.Queries) *sEvent {
+func NewEventImpl(r *database.Queries, db *pgxpool.Pool) *sEvent {
 	return &sEvent{
-		r: r,
+		r:  r,
+		db: db,
 	}
 }
 
 // implement
-func (evt *sEvent) GetAllEventsActive(ctx context.Context, query model.EventQuery) (resultCode int, out []database.PreGoEvent, err error) {
+func (evt *sEvent) GetAllEventsActive(ctx context.Context, query model.EventQuery) (resultCode int, out []database.GetAllActiveEventsWithLikesRow, err error) {
 	limit, page := query.Limit, query.Page
 	offset := (page - 1) * limit
 
-	params := database.GetAllActiveEventsParams{
+	params := database.GetAllActiveEventsWithLikesParams{
 		Limit:  int32(limit),
 		Offset: int32(offset),
 	}
-	foundEvent, err := evt.r.GetAllActiveEvents(ctx, params)
+	foundEvent, err := evt.r.GetAllActiveEventsWithLikes(ctx, params)
 	if err != nil {
 		return response.ErrorListFailed, nil, err
-	}
-
-	if len(foundEvent) == 0 {
-		return response.ErrorDataNotExists, nil, nil
 	}
 
 	return 200, foundEvent, nil
@@ -47,7 +50,27 @@ func (evt *sEvent) GetAllEventsActive(ctx context.Context, query model.EventQuer
 
 func (evt *sEvent) NewEvent(ctx context.Context, userId string, in *model.AddNewEventParams) (resultCode int, out database.PreGoEvent, err error) {
 	fmt.Println("evenet name and des ", in.Name, in.Description)
-	event, err := evt.r.GetEventByName(ctx, in.Name)
+	tx, err := evt.db.Begin(ctx)
+	if err != nil {
+		return response.ErrorTransactionBegin, out, err
+	}
+	defer func() {
+		if p := recover(); p != nil {
+			_ = tx.Rollback(ctx)
+			panic(p)
+		} else if err != nil {
+			_ = tx.Rollback(ctx)
+		} else {
+			commitErr := tx.Commit(ctx)
+			if commitErr != nil {
+				err = commitErr
+			}
+		}
+	}()
+
+	txQueries := evt.r.WithTx(tx)
+
+	event, err := txQueries.GetEventByName(ctx, in.Name)
 	if err != nil && !errors.Is(err, sql.ErrNoRows) {
 		return response.ErrorListFailed, out, err
 	}
@@ -55,7 +78,7 @@ func (evt *sEvent) NewEvent(ctx context.Context, userId string, in *model.AddNew
 		return response.ErrorListFailed, out, err
 	}
 	fmt.Println("evenet name and des ", in.Name, in.Description)
-	newEvent, err := evt.r.AddNewEvent(ctx, database.AddNewEventParams{
+	newEvent, err := txQueries.AddNewEvent(ctx, database.AddNewEventParams{
 		EventName:        in.Name,
 		EventDescription: pgtype.Text{String: in.Description, Valid: true},
 		EventImageUrl:    pgtype.Text{String: in.ImageUrl, Valid: true},
@@ -64,10 +87,35 @@ func (evt *sEvent) NewEvent(ctx context.Context, userId string, in *model.AddNew
 		EventActive:      pgtype.Bool{Bool: true, Valid: true},
 		UserID:           pgtype.UUID{Bytes: uuid.MustParse(userId), Valid: true},
 	})
-
 	if err != nil {
 		return response.ErrorInsert, out, nil
 	}
+
+	messageNoti := map[string]interface{}{
+		"pattern": "noti_created",
+		"data": map[string]interface{}{
+			"noti_type":    "NEWS",
+			"noti_content": "Rạp vừa ra mắt sự kiện mới, xem ngay !",
+			"noti_options": map[string]interface{}{
+				"id":    newEvent.ID,
+				"title": newEvent.EventName,
+			},
+			"noti_senderId":   nil,
+			"noti_receivedId": nil,
+		},
+	}
+
+	body, err := json.Marshal(messageNoti)
+	if err != nil {
+		return response.ErrorInsert, out, err
+	}
+
+	err = helper.SendToRabbitMQ(body, consts.ExchangeNoti, consts.RoutingKeyNoti)
+	if err != nil {
+		return response.ErrorRabbitMQ, out, err
+	}
+	global.Logger.Info("Send to RabbitMQ success", zap.Any("message", messageNoti))
+
 	return 201, newEvent, nil
 }
 func (evt *sEvent) EditEvent(ctx context.Context, id string, in *model.UpdateEventParams) (resultCode int, err error) {
@@ -132,6 +180,61 @@ func (evt *sEvent) DeleteEvent(ctx context.Context, id string) (resultCode int, 
 	}
 
 	return 200, nil
+}
+
+func (evt *sEvent) EventsLike(ctx context.Context, id string, userId string) (resultCode int, err error) {
+	uuidID, err := ParseUUID(id)
+	if err != nil {
+		return response.ErrParseUUID, err
+	}
+
+	event, err := evt.r.GetEventById(ctx, uuidID)
+	if err != nil {
+		return response.ErrorDataNotExists, err
+	}
+
+	_, err = evt.r.CreateEventLike(ctx, database.CreateEventLikeParams{
+		EventID: event.ID,
+		UserID:  pgtype.UUID{Bytes: uuid.MustParse(userId), Valid: true},
+	})
+	if err != nil {
+		return response.ErrorInsert, err
+	}
+	return 200, nil
+}
+func (evt *sEvent) EventsUnLike(ctx context.Context, eventID string, userID string) (resultCode int, err error) {
+	parsedEventID, err := ParseUUID(eventID)
+	if err != nil {
+		return response.ErrParseUUID, err
+	}
+
+	event, err := evt.r.GetEventById(ctx, parsedEventID)
+	if err != nil {
+		return response.ErrorDataNotExists, err
+	}
+
+	parsedUserID := pgtype.UUID{Bytes: uuid.MustParse(userID), Valid: true}
+	err = evt.r.DeleteEventLike(ctx, database.DeleteEventLikeParams{
+		EventID: event.ID,
+		UserID:  parsedUserID,
+	})
+	if err != nil {
+		return response.ErrorDelete, err
+	}
+	return 200, nil
+}
+
+func (evt *sEvent) IsLiked(ctx context.Context, userId string) (resultCode int, out []database.GetEventsUserLikeRow, err error) {
+	parsedUserId, err := ParseUUID(userId)
+	if err != nil {
+		return response.ErrParseUUID, out, err
+	}
+
+	eventUser, err := evt.r.GetEventsUserLike(ctx, parsedUserId)
+	if err != nil {
+		return response.ErrorListFailed, out, err
+	}
+	return 200, eventUser, nil
 }
 
 func ParseUUID(str string) (pgtype.UUID, error) {

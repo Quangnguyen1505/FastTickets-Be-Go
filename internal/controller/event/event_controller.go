@@ -129,6 +129,8 @@ func (h *cEvent) EditEvent(ctx *gin.Context) {
 // @Tags         event
 // @Accept       json
 // @Produce      json
+// @Param        authorization header string true "authorization token"
+// @Param        x-client-id header string true "x-client-id user"
 // @Param        id      path      string  true  "Event ID"
 // @Success      200     {object}  response.Response
 // @Failure      500     {object}  response.ErrResponse
@@ -150,6 +152,8 @@ func (h *cEvent) GetEventById(ctx *gin.Context) {
 // @Tags         event
 // @Accept       json
 // @Produce      json
+// @Param        authorization header string true "authorization token"
+// @Param        x-client-id header string true "x-client-id user"
 // @Param        id      path      string  true  "Event ID"
 // @Success      200     {object}  response.Response
 // @Failure      500     {object}  response.ErrResponse
@@ -163,4 +167,94 @@ func (h *cEvent) DeleteEvent(ctx *gin.Context) {
 		return
 	}
 	response.SuccessResponse(ctx, 200, nil, "Delete Event Successfully!")
+}
+
+// Event Documentation
+// @Summary      Like an event
+// @Description  When a user likes an event
+// @Tags         event
+// @Accept       json
+// @Produce      json
+// @Param        id      path      string  true  "Event ID"
+// @Param        authorization header string true "authorization token"
+// @Param        x-client-id header string true "x-client-id user"
+// @Success      200     {object}  response.Response
+// @Failure      500     {object}  response.ErrResponse
+// @Router       /events/{id}/like [post]
+func (h *cEvent) EventLike(ctx *gin.Context) {
+	eventId := ctx.Param("id")
+
+	//get userId from uuid (token)
+	userId, err := context.GetUserIdFromUUID(ctx.Request.Context())
+	if err != nil {
+		response.ErrorResponse(ctx, response.ErrTwoFactorAuthSetUpFailed, "Missing get UUID", err)
+	}
+
+	statusCode, err := services.Event().EventsLike(ctx, eventId, userId)
+	if err != nil {
+		global.Logger.Error("Error event like", zap.Error(err))
+		response.ErrorResponse(ctx, statusCode, "", err)
+		return
+	}
+
+	response.SuccessResponse(ctx, 200, nil, "Event Like Successfully!")
+}
+
+// Event Documentation
+// @Summary      Unlike an event
+// @Description  When a user unlikes an event
+// @Tags         event
+// @Accept       json
+// @Produce      json
+// @Param        id      path      string  true  "Event ID"
+// @Param        authorization header string true "authorization token"
+// @Param        x-client-id header string true "x-client-id user"
+// @Success      200     {object}  response.Response
+// @Failure      500     {object}  response.ErrResponse
+// @Router       /events/{id}/unlike [delete]
+func (h *cEvent) EventUnLike(ctx *gin.Context) {
+	eventId := ctx.Param("id")
+
+	userId, err := context.GetUserIdFromUUID(ctx.Request.Context())
+	if err != nil {
+		response.ErrorResponse(ctx, response.ErrTwoFactorAuthSetUpFailed, "Missing get UUID", err)
+	}
+
+	statusCode, err := services.Event().EventsUnLike(ctx, eventId, userId)
+
+	if err != nil {
+		global.Logger.Error("Error event unlike", zap.Error(err))
+		response.ErrorResponse(ctx, statusCode, "", err)
+		return
+	}
+
+	response.SuccessResponse(ctx, 200, nil, "Event Unlike Successfully!")
+}
+
+// Event Documentation
+// @Summary      get events like by user
+// @Description  get events like by user
+// @Tags         event
+// @Accept       json
+// @Produce      json
+// @Param        authorization header string true "authorization token"
+// @Param        x-client-id header string true "x-client-id user"
+// @Success      200     {object}  response.Response
+// @Failure      500     {object}  response.ErrResponse
+// @Router       /events/users [get]
+func (h *cEvent) EventsIsLike(ctx *gin.Context) {
+	userId, err := context.GetUserIdFromUUID(ctx.Request.Context())
+	if err != nil {
+		response.ErrorResponse(ctx, response.ErrTwoFactorAuthSetUpFailed, "Missing get UUID", err)
+	}
+
+	statusCode, metadata, err := services.Event().IsLiked(ctx, userId)
+
+	if err != nil {
+		global.Logger.Error("Error event unlike", zap.Error(err))
+		response.ErrorResponse(ctx, statusCode, "", err)
+		return
+	}
+
+	response.SuccessResponse(ctx, 200, metadata, "Get event like by user Successfully!")
 }

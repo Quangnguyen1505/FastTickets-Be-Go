@@ -36,7 +36,7 @@ func Authentication() gin.HandlerFunc {
 			return
 		}
 		fmt.Println("accesstoken header ", JwtToken)
-		userId := c.GetHeader("x-client-id")
+		userId := c.GetHeader(consts.XClientId)
 		keyUser := fmt.Sprintf("%s%s", consts.CACHE_USER, userId)
 
 		var userToken UserTokens
@@ -98,7 +98,7 @@ func CheckPermission() gin.HandlerFunc {
 			return
 		}
 
-		userId := c.GetHeader("x-client-id")
+		userId := c.GetHeader(consts.XClientId)
 		keyUser := fmt.Sprintf("%s%s", consts.CACHE_USER, userId)
 
 		value, err := cache.GetFieldHashCache(c.Request.Context(), keyUser, "roleId")

@@ -57,10 +57,10 @@ type ResetPasswordEmailMessage struct {
 
 func StartAllConsumers() {
 	helper.StartConsumer(
-		"email_exchange",
-		"direct",
-		"email_queue",
-		"booking.success",
+		consts.ExchangeEmail,
+		consts.TypeEmail,
+		consts.QueueBooking,
+		consts.RoutingKeyBooking,
 		func(body []byte) error {
 			var emailMsg EmailMessage
 			if err := json.Unmarshal(body, &emailMsg); err != nil {
@@ -87,10 +87,10 @@ func StartAllConsumers() {
 	)
 
 	helper.StartConsumer(
-		"email_exchange",
-		"direct",
-		"reset_password_queue",
-		"reset.password",
+		consts.ExchangeEmail,
+		consts.TypeEmail,
+		consts.QueueResetPassword,
+		consts.RoutingKeyResetPassword,
 		func(body []byte) error {
 			var resetMsg ResetPasswordEmailMessage
 			if err := json.Unmarshal(body, &resetMsg); err != nil {

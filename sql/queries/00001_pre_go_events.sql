@@ -1,9 +1,14 @@
 -- GetAllActiveEvents
--- name: GetAllActiveEvents :many
-SELECT * FROM pre_go_events
-WHERE event_active = TRUE
-ORDER BY created_at DESC
-LIMIT $1 OFFSET $2;
+-- name: GetAllActiveEventsWithLikes :many
+SELECT
+    e.*,
+    COUNT(l.user_id) AS like_count
+FROM pre_go_events e
+LEFT JOIN pre_event_like_user l ON e.id = l.event_id
+WHERE e.event_active = TRUE
+GROUP BY e.id
+ORDER BY e.created_at DESC
+    LIMIT $1 OFFSET $2;
 
 -- GetEventById
 -- name: GetEventById :one

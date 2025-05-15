@@ -13,5 +13,5 @@ CREATE TABLE pre_go_contact_messages (
 
 -- +goose Down
 -- +goose StatementBegin
-DROP TABLE IF EXISTS contact_messages;
+DROP TABLE IF EXISTS pre_go_contact_messages;
 -- +goose StatementEnd

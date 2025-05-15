@@ -40,6 +40,12 @@ const (
 
 	//send mail
 	ErrorSendEmail = 90001
+
+	// transaction
+	ErrorTransactionBegin = 90005
+
+	//rabbitmq
+	ErrorRabbitMQ = 90006
 )
 
 var msg = map[int]string{
@@ -82,4 +88,10 @@ var msg = map[int]string{
 
 	//send mail
 	ErrorSendEmail: "Failed to send email",
+
+	//transaction
+	ErrorTransactionBegin: "Failed to begin transaction",
+
+	//rabbitmq
+	ErrorRabbitMQ: "Failed to send message to RabbitMQ",
 }

@@ -6,7 +6,7 @@ postgresql:
   username: postgres
   password: "1234567890"
   host: localhost
-  port: 25432
+  port: 5432
   dbname : shopdevgov2
 security:
   jwt:
