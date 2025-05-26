@@ -1,6 +1,7 @@
 package global
 
 import (
+	"github.com/gorilla/websocket"
 	"github.com/jackc/pgx/v5/pgxpool"
 	"github.com/ntquang/ecommerce/pkg/logger"
 	"github.com/ntquang/ecommerce/pkg/setting"
@@ -16,4 +17,5 @@ var (
 	Redis           *redis.Client
 	RabbitMQChannel *amqp.Channel
 	Grpc            *grpc.ClientConn
+	SocketHub       *websocket.Conn
 )

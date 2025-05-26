@@ -3,7 +3,6 @@ package imple
 import (
 	"context"
 	"database/sql"
-	"encoding/json"
 	"errors"
 	"fmt"
 
@@ -94,7 +93,7 @@ func (evt *sEvent) NewEvent(ctx context.Context, userId string, in *model.AddNew
 	messageNoti := map[string]interface{}{
 		"pattern": "noti_created",
 		"data": map[string]interface{}{
-			"noti_type":    "NEWS",
+			"noti_type":    "EVENT",
 			"noti_content": "Rạp vừa ra mắt sự kiện mới, xem ngay !",
 			"noti_options": map[string]interface{}{
 				"id":    newEvent.ID,
@@ -105,12 +104,12 @@ func (evt *sEvent) NewEvent(ctx context.Context, userId string, in *model.AddNew
 		},
 	}
 
-	body, err := json.Marshal(messageNoti)
-	if err != nil {
-		return response.ErrorInsert, out, err
-	}
+	// body, err := json.Marshal(messageNoti)
+	// if err != nil {
+	// 	return response.ErrorInsert, out, err
+	// }
 
-	err = helper.SendToRabbitMQ(body, consts.ExchangeNoti, consts.RoutingKeyNoti)
+	err = helper.SendToRabbitMQ(messageNoti, consts.ExchangeNoti, consts.RoutingKeyNoti)
 	if err != nil {
 		return response.ErrorRabbitMQ, out, err
 	}

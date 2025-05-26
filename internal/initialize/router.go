@@ -7,6 +7,7 @@ import (
 	"github.com/ntquang/ecommerce/global"
 	"github.com/ntquang/ecommerce/internal/middlewares"
 	"github.com/ntquang/ecommerce/internal/routers"
+	"github.com/ntquang/ecommerce/internal/websocket"
 )
 
 func Initrouter() *gin.Engine {
@@ -21,10 +22,15 @@ func Initrouter() *gin.Engine {
 		r.Use(gin.Logger(), gin.Recovery())
 	}
 
+	r.GET("/ws", func(c *gin.Context) {
+		websocket.ChatSocketHandler(c.Writer, c.Request)
+	})
+
 	oauth2Router := routers.RouterGroupApp.Oauth2
 	eventRouter := routers.RouterGroupApp.Event
 	menuFunctionRouter := routers.RouterGroupApp.MenuFunction
 	contactMessageRouter := routers.RouterGroupApp.ContactMessageGroup
+	chatEmployee := routers.RouterGroupApp.ChatEmployeeGroup
 
 	r.Use(middlewares.CORSMiddleware())
 	MainGroup := r.Group("/v1/2024")
@@ -42,6 +48,9 @@ func Initrouter() *gin.Engine {
 	}
 	{
 		contactMessageRouter.InitContactMessage(MainGroup)
+	}
+	{
+		chatEmployee.InitChatWithEmployee(MainGroup)
 	}
 
 	r.NoRoute(func(c *gin.Context) {

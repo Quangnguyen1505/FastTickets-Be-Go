@@ -5,6 +5,7 @@ import (
 
 	"github.com/ntquang/ecommerce/global"
 	"github.com/ntquang/ecommerce/internal/initialize"
+	"github.com/ntquang/ecommerce/internal/websocket"
 	ginSwagger "github.com/swaggo/gin-swagger"
 
 	// gin-swagger middlewares
@@ -30,6 +31,8 @@ import (
 func main() {
 	r := initialize.Run()
 	port := global.Config.Server.Port
+
+	go websocket.ChatHub.Run()
 
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 

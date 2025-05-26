@@ -17,4 +17,6 @@ func InitServiceInterface() {
 	services.InitMenuFunction(imple.NewMenuFunctionImpl(queries))
 	// contact message service interface
 	services.InitContactMessage(imple.NewContactMessage(queries))
+	// chat with employee service interface
+	services.InitChat(imple.NewChatEmployee())
 }

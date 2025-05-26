@@ -1088,3 +1088,172 @@
 {"level":"INFO","time":"2025-05-15T14:37:41.145+0700","caller":"initialize/rabbitmq.go:28","msg":"RabbitMQ initialized successfully!"}
 {"level":"INFO","time":"2025-05-15T14:37:41.148+0700","caller":"helper/consumer-rabbitmq.go:72","msg":"Consumer started for queue: email_queue"}
 {"level":"INFO","time":"2025-05-15T14:37:41.151+0700","caller":"helper/consumer-rabbitmq.go:72","msg":"Consumer started for queue: reset_password_queue"}
+{"level":"INFO","time":"2025-05-20T16:41:05.610+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-05-20T16:41:05.631+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-05-20T16:41:05.631+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-05-20T16:41:05.685+0700","caller":"initialize/rabbitmq.go:28","msg":"RabbitMQ initialized successfully!"}
+{"level":"INFO","time":"2025-05-20T16:41:05.688+0700","caller":"helper/consumer-rabbitmq.go:72","msg":"Consumer started for queue: email_queue"}
+{"level":"INFO","time":"2025-05-20T16:41:05.690+0700","caller":"helper/consumer-rabbitmq.go:72","msg":"Consumer started for queue: reset_password_queue"}
+{"level":"INFO","time":"2025-05-21T12:24:09.494+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-05-21T12:24:09.509+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-05-21T12:24:09.510+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-05-21T12:24:09.563+0700","caller":"initialize/rabbitmq.go:28","msg":"RabbitMQ initialized successfully!"}
+{"level":"INFO","time":"2025-05-21T12:24:09.566+0700","caller":"helper/consumer-rabbitmq.go:72","msg":"Consumer started for queue: email_queue"}
+{"level":"INFO","time":"2025-05-21T12:24:09.569+0700","caller":"helper/consumer-rabbitmq.go:72","msg":"Consumer started for queue: reset_password_queue"}
+{"level":"ERROR","time":"2025-05-21T14:48:27.849+0700","caller":"helper/consumer-rabbitmq.go:67","msg":"Handler error:","error":"json: cannot unmarshal number 91800.68 into Go struct field EmailMessage.total_price of type int","stacktrace":"github.com/ntquang/ecommerce/internal/helper.StartConsumer.func1\n\tD:/fasttickets/golang-fasttickets/internal/helper/consumer-rabbitmq.go:67"}
+{"level":"INFO","time":"2025-05-23T10:52:54.591+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-05-23T10:52:54.607+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-05-23T10:52:54.607+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-05-23T10:52:54.681+0700","caller":"initialize/rabbitmq.go:28","msg":"RabbitMQ initialized successfully!"}
+{"level":"INFO","time":"2025-05-23T10:52:54.697+0700","caller":"helper/consumer-rabbitmq.go:72","msg":"Consumer started for queue: email_queue"}
+{"level":"INFO","time":"2025-05-23T10:52:54.699+0700","caller":"helper/consumer-rabbitmq.go:72","msg":"Consumer started for queue: reset_password_queue"}
+{"level":"INFO","time":"2025-05-23T11:12:55.008+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-05-23T11:12:55.020+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-05-23T11:12:55.021+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-05-23T11:12:55.078+0700","caller":"initialize/rabbitmq.go:28","msg":"RabbitMQ initialized successfully!"}
+{"level":"INFO","time":"2025-05-23T11:12:55.085+0700","caller":"helper/consumer-rabbitmq.go:72","msg":"Consumer started for queue: email_queue"}
+{"level":"INFO","time":"2025-05-23T11:12:55.088+0700","caller":"helper/consumer-rabbitmq.go:72","msg":"Consumer started for queue: reset_password_queue"}
+{"level":"ERROR","time":"2025-05-23T11:14:00.818+0700","caller":"chat_employee/chat_controller.go:25","msg":"Error parse params init sessionID","error":"EOF","stacktrace":"github.com/ntquang/ecommerce/internal/controller/chat_employee.(*CChatEmployee).InitSessionId\n\tD:/fasttickets/golang-fasttickets/internal/controller/chat_employee/chat_controller.go:25\ngithub.com/gin-gonic/gin.(*Context).Next\n\tC:/Users/Thanh Quang/go/pkg/mod/github.com/gin-gonic/gin@v1.10.0/context.go:185\ngithub.com/gin-gonic/gin.CustomRecoveryWithWriter.func1\n\tC:/Users/Thanh Quang/go/pkg/mod/github.com/gin-gonic/gin@v1.10.0/recovery.go:102\ngithub.com/gin-gonic/gin.(*Context).Next\n\tC:/Users/Thanh Quang/go/pkg/mod/github.com/gin-gonic/gin@v1.10.0/context.go:185\ngithub.com/gin-gonic/gin.LoggerWithConfig.func1\n\tC:/Users/Thanh Quang/go/pkg/mod/github.com/gin-gonic/gin@v1.10.0/logger.go:249\ngithub.com/gin-gonic/gin.(*Context).Next\n\tC:/Users/Thanh Quang/go/pkg/mod/github.com/gin-gonic/gin@v1.10.0/context.go:185\ngithub.com/gin-gonic/gin.(*Engine).handleHTTPRequest\n\tC:/Users/Thanh Quang/go/pkg/mod/github.com/gin-gonic/gin@v1.10.0/gin.go:633\ngithub.com/gin-gonic/gin.(*Engine).ServeHTTP\n\tC:/Users/Thanh Quang/go/pkg/mod/github.com/gin-gonic/gin@v1.10.0/gin.go:589\nnet/http.serverHandler.ServeHTTP\n\tD:/install/golang/src/net/http/server.go:3301\nnet/http.(*conn).serve\n\tD:/install/golang/src/net/http/server.go:2102"}
+{"level":"INFO","time":"2025-05-23T11:14:41.307+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-05-23T11:14:41.318+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-05-23T11:14:41.318+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-05-23T11:14:41.375+0700","caller":"initialize/rabbitmq.go:28","msg":"RabbitMQ initialized successfully!"}
+{"level":"INFO","time":"2025-05-23T11:14:41.379+0700","caller":"helper/consumer-rabbitmq.go:72","msg":"Consumer started for queue: email_queue"}
+{"level":"INFO","time":"2025-05-23T11:14:41.381+0700","caller":"helper/consumer-rabbitmq.go:72","msg":"Consumer started for queue: reset_password_queue"}
+{"level":"INFO","time":"2025-05-23T11:18:21.803+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-05-23T11:18:21.815+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-05-23T11:18:21.815+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-05-23T11:18:21.873+0700","caller":"initialize/rabbitmq.go:28","msg":"RabbitMQ initialized successfully!"}
+{"level":"INFO","time":"2025-05-23T11:18:21.877+0700","caller":"helper/consumer-rabbitmq.go:72","msg":"Consumer started for queue: email_queue"}
+{"level":"INFO","time":"2025-05-23T11:18:21.879+0700","caller":"helper/consumer-rabbitmq.go:72","msg":"Consumer started for queue: reset_password_queue"}
+{"level":"INFO","time":"2025-05-23T11:55:23.100+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-05-23T11:55:23.113+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-05-23T11:55:23.114+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-05-23T11:55:23.166+0700","caller":"initialize/rabbitmq.go:28","msg":"RabbitMQ initialized successfully!"}
+{"level":"INFO","time":"2025-05-23T11:55:23.170+0700","caller":"helper/consumer-rabbitmq.go:72","msg":"Consumer started for queue: email_queue"}
+{"level":"INFO","time":"2025-05-23T11:55:23.172+0700","caller":"helper/consumer-rabbitmq.go:72","msg":"Consumer started for queue: reset_password_queue"}
+{"level":"INFO","time":"2025-05-23T14:57:27.571+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-05-23T14:57:27.583+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-05-23T14:57:27.584+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-05-23T14:57:27.649+0700","caller":"initialize/rabbitmq.go:28","msg":"RabbitMQ initialized successfully!"}
+{"level":"INFO","time":"2025-05-23T14:57:27.660+0700","caller":"helper/consumer-rabbitmq.go:72","msg":"Consumer started for queue: email_queue"}
+{"level":"INFO","time":"2025-05-23T14:57:27.664+0700","caller":"helper/consumer-rabbitmq.go:72","msg":"Consumer started for queue: reset_password_queue"}
+{"level":"INFO","time":"2025-05-23T15:11:56.561+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-05-23T15:11:56.573+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-05-23T15:11:56.573+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-05-23T15:11:56.626+0700","caller":"initialize/rabbitmq.go:28","msg":"RabbitMQ initialized successfully!"}
+{"level":"INFO","time":"2025-05-23T15:11:56.631+0700","caller":"helper/consumer-rabbitmq.go:72","msg":"Consumer started for queue: email_queue"}
+{"level":"INFO","time":"2025-05-23T15:11:56.633+0700","caller":"helper/consumer-rabbitmq.go:72","msg":"Consumer started for queue: reset_password_queue"}
+{"level":"INFO","time":"2025-05-23T15:14:37.292+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-05-23T15:14:37.303+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-05-23T15:14:37.303+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-05-23T15:14:37.352+0700","caller":"initialize/rabbitmq.go:28","msg":"RabbitMQ initialized successfully!"}
+{"level":"INFO","time":"2025-05-23T15:14:37.356+0700","caller":"helper/consumer-rabbitmq.go:72","msg":"Consumer started for queue: email_queue"}
+{"level":"INFO","time":"2025-05-23T15:14:37.359+0700","caller":"helper/consumer-rabbitmq.go:72","msg":"Consumer started for queue: reset_password_queue"}
+{"level":"INFO","time":"2025-05-23T19:31:29.739+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-05-23T19:31:29.758+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-05-23T19:31:29.758+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-05-23T19:31:29.812+0700","caller":"initialize/rabbitmq.go:28","msg":"RabbitMQ initialized successfully!"}
+{"level":"INFO","time":"2025-05-23T19:31:29.815+0700","caller":"helper/consumer-rabbitmq.go:72","msg":"Consumer started for queue: email_queue"}
+{"level":"INFO","time":"2025-05-23T19:31:29.819+0700","caller":"helper/consumer-rabbitmq.go:72","msg":"Consumer started for queue: reset_password_queue"}
+{"level":"INFO","time":"2025-05-24T10:24:14.980+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-05-24T10:24:14.995+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-05-24T10:24:14.995+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-05-24T10:24:15.053+0700","caller":"initialize/rabbitmq.go:28","msg":"RabbitMQ initialized successfully!"}
+{"level":"INFO","time":"2025-05-24T10:24:15.056+0700","caller":"helper/consumer-rabbitmq.go:72","msg":"Consumer started for queue: email_queue"}
+{"level":"INFO","time":"2025-05-24T10:24:15.060+0700","caller":"helper/consumer-rabbitmq.go:72","msg":"Consumer started for queue: reset_password_queue"}
+{"level":"INFO","time":"2025-05-24T10:52:09.856+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-05-24T10:52:09.869+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-05-24T10:52:09.870+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-05-24T10:52:09.932+0700","caller":"initialize/rabbitmq.go:28","msg":"RabbitMQ initialized successfully!"}
+{"level":"INFO","time":"2025-05-24T10:52:09.935+0700","caller":"helper/consumer-rabbitmq.go:72","msg":"Consumer started for queue: email_queue"}
+{"level":"INFO","time":"2025-05-24T10:52:09.937+0700","caller":"helper/consumer-rabbitmq.go:72","msg":"Consumer started for queue: reset_password_queue"}
+{"level":"INFO","time":"2025-05-24T15:34:40.500+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-05-24T15:34:40.518+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-05-24T15:34:40.519+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-05-24T15:34:40.581+0700","caller":"initialize/rabbitmq.go:28","msg":"RabbitMQ initialized successfully!"}
+{"level":"INFO","time":"2025-05-24T15:34:40.584+0700","caller":"helper/consumer-rabbitmq.go:72","msg":"Consumer started for queue: email_queue"}
+{"level":"INFO","time":"2025-05-24T15:34:40.587+0700","caller":"helper/consumer-rabbitmq.go:72","msg":"Consumer started for queue: reset_password_queue"}
+{"level":"INFO","time":"2025-05-24T16:26:43.254+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-05-24T16:26:43.267+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-05-24T16:26:43.269+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-05-24T16:26:43.327+0700","caller":"initialize/rabbitmq.go:28","msg":"RabbitMQ initialized successfully!"}
+{"level":"INFO","time":"2025-05-24T16:26:43.334+0700","caller":"helper/consumer-rabbitmq.go:72","msg":"Consumer started for queue: email_queue"}
+{"level":"INFO","time":"2025-05-24T16:26:43.336+0700","caller":"helper/consumer-rabbitmq.go:72","msg":"Consumer started for queue: reset_password_queue"}
+{"level":"INFO","time":"2025-05-26T13:05:42.388+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-05-26T13:05:42.402+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-05-26T13:05:42.403+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-05-26T13:05:42.459+0700","caller":"initialize/rabbitmq.go:28","msg":"RabbitMQ initialized successfully!"}
+{"level":"INFO","time":"2025-05-26T13:05:42.462+0700","caller":"helper/consumer-rabbitmq.go:72","msg":"Consumer started for queue: email_queue"}
+{"level":"INFO","time":"2025-05-26T13:05:42.465+0700","caller":"helper/consumer-rabbitmq.go:72","msg":"Consumer started for queue: reset_password_queue"}
+{"level":"INFO","time":"2025-05-26T14:00:44.335+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-05-26T14:00:44.347+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-05-26T14:00:44.347+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-05-26T14:00:44.417+0700","caller":"initialize/rabbitmq.go:28","msg":"RabbitMQ initialized successfully!"}
+{"level":"INFO","time":"2025-05-26T14:00:44.424+0700","caller":"helper/consumer-rabbitmq.go:72","msg":"Consumer started for queue: email_queue"}
+{"level":"INFO","time":"2025-05-26T14:00:44.427+0700","caller":"helper/consumer-rabbitmq.go:72","msg":"Consumer started for queue: reset_password_queue"}
+{"level":"INFO","time":"2025-05-26T14:09:49.530+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-05-26T14:09:49.542+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-05-26T14:09:49.542+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-05-26T14:09:49.599+0700","caller":"initialize/rabbitmq.go:28","msg":"RabbitMQ initialized successfully!"}
+{"level":"INFO","time":"2025-05-26T14:09:49.602+0700","caller":"helper/consumer-rabbitmq.go:72","msg":"Consumer started for queue: email_queue"}
+{"level":"INFO","time":"2025-05-26T14:09:49.604+0700","caller":"helper/consumer-rabbitmq.go:72","msg":"Consumer started for queue: reset_password_queue"}
+{"level":"INFO","time":"2025-05-26T14:45:25.793+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-05-26T14:45:25.805+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-05-26T14:45:25.805+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-05-26T14:45:25.865+0700","caller":"initialize/rabbitmq.go:28","msg":"RabbitMQ initialized successfully!"}
+{"level":"INFO","time":"2025-05-26T14:45:25.872+0700","caller":"helper/consumer-rabbitmq.go:72","msg":"Consumer started for queue: email_queue"}
+{"level":"INFO","time":"2025-05-26T14:45:25.875+0700","caller":"helper/consumer-rabbitmq.go:72","msg":"Consumer started for queue: reset_password_queue"}
+{"level":"INFO","time":"2025-05-26T14:46:36.398+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-05-26T14:46:36.409+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-05-26T14:46:36.409+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-05-26T14:46:36.465+0700","caller":"initialize/rabbitmq.go:28","msg":"RabbitMQ initialized successfully!"}
+{"level":"INFO","time":"2025-05-26T14:46:36.469+0700","caller":"helper/consumer-rabbitmq.go:72","msg":"Consumer started for queue: email_queue"}
+{"level":"INFO","time":"2025-05-26T14:46:36.471+0700","caller":"helper/consumer-rabbitmq.go:72","msg":"Consumer started for queue: reset_password_queue"}
+{"level":"INFO","time":"2025-05-26T14:50:04.628+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-05-26T14:50:04.640+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-05-26T14:50:04.640+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-05-26T14:50:04.690+0700","caller":"initialize/rabbitmq.go:28","msg":"RabbitMQ initialized successfully!"}
+{"level":"INFO","time":"2025-05-26T14:50:04.694+0700","caller":"helper/consumer-rabbitmq.go:72","msg":"Consumer started for queue: email_queue"}
+{"level":"INFO","time":"2025-05-26T14:50:04.696+0700","caller":"helper/consumer-rabbitmq.go:72","msg":"Consumer started for queue: reset_password_queue"}
+{"level":"INFO","time":"2025-05-26T14:56:06.162+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-05-26T14:56:06.172+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-05-26T14:56:06.173+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-05-26T14:56:06.225+0700","caller":"initialize/rabbitmq.go:28","msg":"RabbitMQ initialized successfully!"}
+{"level":"INFO","time":"2025-05-26T14:56:06.228+0700","caller":"helper/consumer-rabbitmq.go:72","msg":"Consumer started for queue: email_queue"}
+{"level":"INFO","time":"2025-05-26T14:56:06.231+0700","caller":"helper/consumer-rabbitmq.go:72","msg":"Consumer started for queue: reset_password_queue"}
+{"level":"INFO","time":"2025-05-26T16:53:07.800+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-05-26T16:53:07.813+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-05-26T16:53:07.814+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-05-26T16:53:07.868+0700","caller":"initialize/rabbitmq.go:28","msg":"RabbitMQ initialized successfully!"}
+{"level":"INFO","time":"2025-05-26T16:53:07.874+0700","caller":"helper/consumer-rabbitmq.go:72","msg":"Consumer started for queue: email_queue"}
+{"level":"INFO","time":"2025-05-26T16:53:07.877+0700","caller":"helper/consumer-rabbitmq.go:72","msg":"Consumer started for queue: reset_password_queue"}
+{"level":"INFO","time":"2025-05-26T16:54:56.189+0700","caller":"imple/event.impl.go:117","msg":"Send to RabbitMQ success","message":{"data":{"noti_content":"Rạp vừa ra mắt sự kiện mới, xem ngay !","noti_options":{"id":"a8e4975b-992b-479e-b1ab-ae9036928bb9","title":"Hiếu tró"},"noti_receivedId":null,"noti_senderId":null,"noti_type":"EVENT"},"pattern":"noti_created"}}
+{"level":"INFO","time":"2025-05-26T17:13:09.753+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-05-26T17:13:09.764+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-05-26T17:13:09.764+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-05-26T17:13:09.818+0700","caller":"initialize/rabbitmq.go:28","msg":"RabbitMQ initialized successfully!"}
+{"level":"ERROR","time":"2025-05-26T17:13:09.819+0700","caller":"helper/consumer-rabbitmq.go:21","msg":"Failed to declare exchange:","error":"Exception (406) Reason: \"PRECONDITION_FAILED - inequivalent arg 'durable' for exchange 'email_exchange' in vhost '/': received 'false' but current is 'true'\"","stacktrace":"github.com/ntquang/ecommerce/internal/helper.StartConsumer\n\tD:/fasttickets/golang-fasttickets/internal/helper/consumer-rabbitmq.go:21\ngithub.com/ntquang/ecommerce/internal/initialize.StartAllConsumers\n\tD:/fasttickets/golang-fasttickets/internal/initialize/rabbitmq.go:59\ngithub.com/ntquang/ecommerce/internal/initialize.InitRabbitMQ\n\tD:/fasttickets/golang-fasttickets/internal/initialize/rabbitmq.go:30\ngithub.com/ntquang/ecommerce/internal/initialize.Run\n\tD:/fasttickets/golang-fasttickets/internal/initialize/run.go:12\nmain.main\n\tD:/fasttickets/golang-fasttickets/cmd/server/main.go:32\nruntime.main\n\tD:/install/golang/src/runtime/proc.go:283"}
+{"level":"ERROR","time":"2025-05-26T17:13:09.819+0700","caller":"helper/consumer-rabbitmq.go:21","msg":"Failed to declare exchange:","error":"Exception (504) Reason: \"channel/connection is not open\"","stacktrace":"github.com/ntquang/ecommerce/internal/helper.StartConsumer\n\tD:/fasttickets/golang-fasttickets/internal/helper/consumer-rabbitmq.go:21\ngithub.com/ntquang/ecommerce/internal/initialize.StartAllConsumers\n\tD:/fasttickets/golang-fasttickets/internal/initialize/rabbitmq.go:89\ngithub.com/ntquang/ecommerce/internal/initialize.InitRabbitMQ\n\tD:/fasttickets/golang-fasttickets/internal/initialize/rabbitmq.go:30\ngithub.com/ntquang/ecommerce/internal/initialize.Run\n\tD:/fasttickets/golang-fasttickets/internal/initialize/run.go:12\nmain.main\n\tD:/fasttickets/golang-fasttickets/cmd/server/main.go:32\nruntime.main\n\tD:/install/golang/src/runtime/proc.go:283"}
+{"level":"ERROR","time":"2025-05-26T17:29:13.469+0700","caller":"event/event_controller.go:72","msg":"Error create event","error":"Exception (504) Reason: \"channel/connection is not open\"","stacktrace":"github.com/ntquang/ecommerce/internal/controller/event.(*cEvent).NewEvent\n\tD:/fasttickets/golang-fasttickets/internal/controller/event/event_controller.go:72\ngithub.com/gin-gonic/gin.(*Context).Next\n\tC:/Users/Thanh Quang/go/pkg/mod/github.com/gin-gonic/gin@v1.10.0/context.go:185\ngithub.com/ntquang/ecommerce/internal/routers/event.(*EventRouter).InitEventRouter.UploadImageMiddleware.func4\n\tD:/fasttickets/golang-fasttickets/internal/middlewares/grpc/upload.grpc.go:52\ngithub.com/gin-gonic/gin.(*Context).Next\n\tC:/Users/Thanh Quang/go/pkg/mod/github.com/gin-gonic/gin@v1.10.0/context.go:185\ngithub.com/ntquang/ecommerce/internal/routers/event.(*EventRouter).InitEventRouter.CheckPermission.func2\n\tD:/fasttickets/golang-fasttickets/internal/middlewares/auth.middleware.go:123\ngithub.com/gin-gonic/gin.(*Context).Next\n\tC:/Users/Thanh Quang/go/pkg/mod/github.com/gin-gonic/gin@v1.10.0/context.go:185\ngithub.com/ntquang/ecommerce/internal/routers/event.(*EventRouter).InitEventRouter.Authentication.func1\n\tD:/fasttickets/golang-fasttickets/internal/middlewares/auth.middleware.go:83\ngithub.com/gin-gonic/gin.(*Context).Next\n\tC:/Users/Thanh Quang/go/pkg/mod/github.com/gin-gonic/gin@v1.10.0/context.go:185\ngithub.com/gin-gonic/gin.CustomRecoveryWithWriter.func1\n\tC:/Users/Thanh Quang/go/pkg/mod/github.com/gin-gonic/gin@v1.10.0/recovery.go:102\ngithub.com/gin-gonic/gin.(*Context).Next\n\tC:/Users/Thanh Quang/go/pkg/mod/github.com/gin-gonic/gin@v1.10.0/context.go:185\ngithub.com/gin-gonic/gin.LoggerWithConfig.func1\n\tC:/Users/Thanh Quang/go/pkg/mod/github.com/gin-gonic/gin@v1.10.0/logger.go:249\ngithub.com/gin-gonic/gin.(*Context).Next\n\tC:/Users/Thanh Quang/go/pkg/mod/github.com/gin-gonic/gin@v1.10.0/context.go:185\ngithub.com/gin-gonic/gin.(*Engine).handleHTTPRequest\n\tC:/Users/Thanh Quang/go/pkg/mod/github.com/gin-gonic/gin@v1.10.0/gin.go:633\ngithub.com/gin-gonic/gin.(*Engine).ServeHTTP\n\tC:/Users/Thanh Quang/go/pkg/mod/github.com/gin-gonic/gin@v1.10.0/gin.go:589\nnet/http.serverHandler.ServeHTTP\n\tD:/install/golang/src/net/http/server.go:3301\nnet/http.(*conn).serve\n\tD:/install/golang/src/net/http/server.go:2102"}
+{"level":"INFO","time":"2025-05-26T17:29:49.807+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-05-26T17:29:49.819+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-05-26T17:29:49.820+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-05-26T17:29:49.873+0700","caller":"initialize/rabbitmq.go:28","msg":"RabbitMQ initialized successfully!"}
+{"level":"INFO","time":"2025-05-26T17:29:49.876+0700","caller":"helper/consumer-rabbitmq.go:72","msg":"Consumer started for queue: email_queue"}
+{"level":"INFO","time":"2025-05-26T17:29:49.879+0700","caller":"helper/consumer-rabbitmq.go:72","msg":"Consumer started for queue: reset_password_queue"}
+{"level":"INFO","time":"2025-05-26T17:29:57.451+0700","caller":"imple/event.impl.go:117","msg":"Send to RabbitMQ success","message":{"data":{"noti_content":"Rạp vừa ra mắt sự kiện mới, xem ngay !","noti_options":{"id":"af539822-ef5c-4839-8ae2-fbd827084e31","title":"OP_IDCardToText"},"noti_receivedId":null,"noti_senderId":null,"noti_type":"EVENT"},"pattern":"noti_created"}}
+{"level":"INFO","time":"2025-05-26T17:40:21.755+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-05-26T17:40:21.767+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-05-26T17:40:21.767+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-05-26T17:40:21.826+0700","caller":"initialize/rabbitmq.go:28","msg":"RabbitMQ initialized successfully!"}
+{"level":"INFO","time":"2025-05-26T17:40:21.829+0700","caller":"helper/consumer-rabbitmq.go:72","msg":"Consumer started for queue: email_queue"}
+{"level":"INFO","time":"2025-05-26T17:40:21.831+0700","caller":"helper/consumer-rabbitmq.go:72","msg":"Consumer started for queue: reset_password_queue"}
+{"level":"INFO","time":"2025-05-26T17:40:43.461+0700","caller":"imple/event.impl.go:119","msg":"Send to RabbitMQ success","message":{"data":{"noti_content":"Rạp vừa ra mắt sự kiện mới, xem ngay !","noti_options":{"id":"39bd90a1-f2f6-4311-886b-2b7ad447aced","title":"mvc-nodejs"},"noti_receivedId":null,"noti_senderId":null,"noti_type":"EVENT"},"pattern":"noti_created"}}
+{"level":"INFO","time":"2025-05-26T17:42:13.720+0700","caller":"initialize/postgresqlC.go:27","msg":"initialization PostgresqlC Successfully!"}
+{"level":"INFO","time":"2025-05-26T17:42:13.731+0700","caller":"initialize/redis.go:29","msg":"initialization Redis Successfully!"}
+{"level":"INFO","time":"2025-05-26T17:42:13.732+0700","caller":"initialize/grpc.go:22","msg":"Grpc initialized successfully!"}
+{"level":"INFO","time":"2025-05-26T17:42:13.785+0700","caller":"initialize/rabbitmq.go:28","msg":"RabbitMQ initialized successfully!"}
+{"level":"INFO","time":"2025-05-26T17:42:13.788+0700","caller":"helper/consumer-rabbitmq.go:72","msg":"Consumer started for queue: email_queue"}
+{"level":"INFO","time":"2025-05-26T17:42:13.791+0700","caller":"helper/consumer-rabbitmq.go:72","msg":"Consumer started for queue: reset_password_queue"}
+{"level":"INFO","time":"2025-05-26T17:42:38.342+0700","caller":"imple/event.impl.go:116","msg":"Send to RabbitMQ success","message":{"data":{"noti_content":"Rạp vừa ra mắt sự kiện mới, xem ngay !","noti_options":{"id":"ad85c505-b0ec-4d29-b1cd-08253d47be8e","title":"hiếu tró nguyễn"},"noti_receivedId":null,"noti_senderId":null,"noti_type":"EVENT"},"pattern":"noti_created"}}

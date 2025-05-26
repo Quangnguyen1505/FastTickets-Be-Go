@@ -9,22 +9,24 @@ import (
 	"github.com/google/uuid"
 	"github.com/ntquang/ecommerce/global"
 	"github.com/ntquang/ecommerce/internal/model"
+	"github.com/ntquang/ecommerce/internal/websocket"
 	"github.com/pkg/errors"
 )
 
-type ChatMessage struct {
-	SenderID string `json:"sender_id"`
-	Message  string `json:"message"`
-	SentAt   string `json:"sent_at"` // ISO8601 format
+type sChatEmployee struct{}
+
+func NewChatEmployee() *sChatEmployee {
+	return &sChatEmployee{}
 }
 
-func InitSession(ctx context.Context, userId string) (resultCode int, out string /* sessionId */, err error) {
+func (s *sChatEmployee) InitSession(ctx context.Context, userId string) (resultCode int, out string /* sessionId */, err error) {
 	sessionId := uuid.NewString()
 
 	sessionKey := fmt.Sprintf("chat:session:%s", sessionId)
 	userSessionsKey := fmt.Sprintf("chat:sessions:user:%s", userId)
 
-	now := time.Now().Format(time.RFC3339)
+	loc, _ := time.LoadLocation("Asia/Ho_Chi_Minh")
+	now := time.Now().In(loc).Format(time.RFC3339)
 
 	sessionData := map[string]interface{}{
 		"session_id":  sessionId,
@@ -41,18 +43,22 @@ func InitSession(ctx context.Context, userId string) (resultCode int, out string
 		return
 	}
 
+	global.Redis.SAdd(ctx, "chat:sessions:all", sessionId)
+
 	err = global.Redis.LPush(ctx, userSessionsKey, sessionId).Err()
 	if err != nil {
 		resultCode = 500
 		return
 	}
 
+	global.Redis.LTrim(ctx, userSessionsKey, 0, 99)
+
 	resultCode = 200
 	out = sessionId
 	return
 }
 
-func GetHistoryChat(ctx context.Context, sessionId string) (resultCode int, out []model.GetHistoryChatRow, err error) {
+func (s *sChatEmployee) GetHistoryChat(ctx context.Context, sessionId string) (resultCode int, out []model.GetHistoryChatRow, err error) {
 	key := fmt.Sprintf("chat:messages:%s", sessionId)
 
 	// Lấy toàn bộ tin nhắn
@@ -61,6 +67,8 @@ func GetHistoryChat(ctx context.Context, sessionId string) (resultCode int, out 
 		resultCode = 500
 		return
 	}
+
+	println("messages", messages)
 
 	for _, msgStr := range messages {
 		var msg model.GetHistoryChatRow
@@ -75,13 +83,16 @@ func GetHistoryChat(ctx context.Context, sessionId string) (resultCode int, out 
 	return
 }
 
-func SendMessage(ctx context.Context, sessionId string, sender string, message string) (resultCode int, err error) {
-	key := fmt.Sprintf("chat:messages:%s", sessionId)
+func (s *sChatEmployee) SendMessage(ctx context.Context, in *model.ChatMessageParams) (resultCode int, err error) {
+	key := fmt.Sprintf("chat:messages:%s", in.SessionId)
 
-	msg := ChatMessage{
-		SenderID: sender,
-		Message:  message,
-		SentAt:   time.Now().Format(time.RFC3339),
+	loc, _ := time.LoadLocation("Asia/Ho_Chi_Minh")
+	now := time.Now().In(loc).Format(time.RFC3339)
+
+	msg := model.ChatMessage{
+		SenderID: in.Sender,
+		Message:  in.Message,
+		SentAt:   now,
 	}
 
 	msgBytes, err := json.Marshal(msg)
@@ -97,13 +108,17 @@ func SendMessage(ctx context.Context, sessionId string, sender string, message s
 		return
 	}
 
-	sessionKey := fmt.Sprintf("chat:session:%s", sessionId)
+	sessionKey := fmt.Sprintf("chat:session:%s", in.SessionId)
 	global.Redis.HMSet(ctx, sessionKey, map[string]interface{}{
-		"last_message": message,
-		"updated_at":   time.Now().Format(time.RFC3339),
+		"last_message": in.Message,
+		"updated_at":   now,
 	})
 
 	// send real time here
+	websocket.ChatHub.Broadcast <- websocket.BroadcastMsg{
+		SessionID: in.SessionId,
+		Message:   msgBytes,
+	}
 
 	// Optional: Giới hạn độ dài list để tránh quá tải
 	global.Redis.LTrim(ctx, key, -100, -1) // Giữ lại 100 tin mới nhất
@@ -112,57 +127,47 @@ func SendMessage(ctx context.Context, sessionId string, sender string, message s
 	return
 }
 
-func GetAllSession(ctx context.Context, userId string) (resultCode int, out []model.GetAllSessionRow, err error) {
-	userSessionsKey := fmt.Sprintf("chat:user:%s:sessions", userId)
+func (s *sChatEmployee) GetAllSession(ctx context.Context) (resultCode int, out []model.GetAllSessionRow, err error) {
+	allSessionsKey := "chat:sessions:all" // Danh sách tất cả session ID trong hệ thống
 
-	// Lấy tất cả sessionId của user (có thể là customer hoặc staff)
-	sessionIds, err := global.Redis.SMembers(ctx, userSessionsKey).Result()
+	sessionIds, err := global.Redis.SMembers(ctx, allSessionsKey).Result()
 	if err != nil {
 		resultCode = 500
 		err = errors.Wrap(err, "redis SMembers error")
 		return
 	}
 
-	out = make([]model.GetAllSessionRow, 0, len(sessionIds))
+	out = make([]model.GetAllSessionRow, 0)
 
 	for _, sessionId := range sessionIds {
 		sessionKey := fmt.Sprintf("chat:session:%s", sessionId)
 
-		// Lấy dữ liệu session dạng map
 		sessionData, err := global.Redis.HGetAll(ctx, sessionKey).Result()
-		if err != nil {
-			continue // lỗi Redis thì bỏ qua session này
-		}
-		if len(sessionData) == 0 {
-			continue // session không tồn tại
+		if err != nil || len(sessionData) == 0 {
+			continue
 		}
 
-		// Parse các trường
-		customerID := sessionData["customer_id"]
-		staffIDStr := sessionData["staff_id"]
-		var staffID *string
-		if staffIDStr != "" {
-			staffID = &staffIDStr
-		}
-
-		createdAtStr := sessionData["created_at"]
-		createdAt, _ := time.Parse(time.RFC3339, createdAtStr)
-
-		lastMessage := sessionData["last_message"]
-		if lastMessage == "" {
-			lastMessage = "" // hoặc nil
-		}
-		var lastMsgPtr *string
-		if lastMessage != "" {
-			lastMsgPtr = &lastMessage
-		}
-
-		updatedAtStr := sessionData["updated_at"]
-		updatedAt, _ := time.Parse(time.RFC3339, updatedAtStr)
+		// Chỉ lấy các session chưa có staff xử lý
+		// if sessionData["staff_id"] != "" || sessionData["status"] != "open" {
+		// 	continue
+		// }
 
 		status := sessionData["status"]
-		if status == "" {
-			status = "open" // mặc định
+		if status != "open" && status != "in_progress" {
+			continue
+		}
+
+		customerID := sessionData["customer_id"]
+
+		var staffID *string = nil
+
+		createdAt, _ := time.Parse(time.RFC3339, sessionData["created_at"])
+		updatedAt, _ := time.Parse(time.RFC3339, sessionData["updated_at"])
+
+		var lastMsgPtr *string
+		lastMessage := sessionData["last_message"]
+		if lastMessage != "" {
+			lastMsgPtr = &lastMessage
 		}
 
 		out = append(out, model.GetAllSessionRow{
@@ -172,7 +177,7 @@ func GetAllSession(ctx context.Context, userId string) (resultCode int, out []mo
 			CreatedAt:   createdAt,
 			LastMessage: lastMsgPtr,
 			UpdatedAt:   updatedAt,
-			Status:      status,
+			Status:      sessionData["status"],
 		})
 	}
 
@@ -180,9 +185,11 @@ func GetAllSession(ctx context.Context, userId string) (resultCode int, out []mo
 	return
 }
 
-func JoinChatSession(ctx context.Context, sessionId string, staffId string) (resultCode int, err error) {
-	sessionKey := fmt.Sprintf("chat:session:%s", sessionId)
-	staffSessionsKey := fmt.Sprintf("chat:user:%s:sessions", staffId)
+// dùng sessionID của khách hàng chứ không phải của admin
+// vậy admin không cần init session
+func (s *sChatEmployee) JoinChatSession(ctx context.Context, in *model.JoinChatSessionParams) (resultCode int, err error) {
+	sessionKey := fmt.Sprintf("chat:session:%s", in.SessionId)
+	staffSessionsKey := fmt.Sprintf("chat:user:%s:sessions", in.StaffId)
 
 	// Kiểm tra session có tồn tại không
 	exists, err := global.Redis.Exists(ctx, sessionKey).Result()
@@ -197,7 +204,7 @@ func JoinChatSession(ctx context.Context, sessionId string, staffId string) (res
 	}
 
 	// Gán staffId vào session
-	if err = global.Redis.HSet(ctx, sessionKey, "staff_id", staffId).Err(); err != nil {
+	if err = global.Redis.HSet(ctx, sessionKey, "staff_id", in.StaffId).Err(); err != nil {
 		resultCode = 500
 		return
 	}
@@ -209,16 +216,27 @@ func JoinChatSession(ctx context.Context, sessionId string, staffId string) (res
 	}
 
 	// Thêm sessionId vào danh sách sessions của staff
-	if err = global.Redis.SAdd(ctx, staffSessionsKey, sessionId).Err(); err != nil {
+	if err = global.Redis.SAdd(ctx, staffSessionsKey, in.SessionId).Err(); err != nil {
 		resultCode = 500
 		return
+	}
+
+	joinEvent := map[string]interface{}{
+		"event":      "staff_joined",
+		"session_id": in.SessionId,
+		"staff_id":   in.StaffId,
+	}
+	msgBytes, _ := json.Marshal(joinEvent)
+	websocket.ChatHub.Broadcast <- websocket.BroadcastMsg{
+		SessionID: in.SessionId,
+		Message:   msgBytes,
 	}
 
 	resultCode = 200
 	return
 }
 
-func CloseChatSession(ctx context.Context, sessionId string) (resultCode int, err error) {
+func (s *sChatEmployee) CloseChatSession(ctx context.Context, sessionId string) (resultCode int, err error) {
 	sessionKey := fmt.Sprintf("chat:session:%s", sessionId)
 
 	// Kiểm tra session có tồn tại không
@@ -237,6 +255,23 @@ func CloseChatSession(ctx context.Context, sessionId string) (resultCode int, er
 	if err = global.Redis.HSet(ctx, sessionKey, "status", "closed").Err(); err != nil {
 		resultCode = 500
 		return
+	}
+
+	message := map[string]interface{}{
+		"event":      "session_closed",
+		"session_id": sessionId,
+		"message":    "Vấn đề của bạn đã được giải quyết. Bạn có còn điều gì muốn hỏi không?",
+	}
+
+	msgBytes, err := json.Marshal(message)
+	if err != nil {
+		resultCode = 500
+		return
+	}
+
+	websocket.ChatHub.Broadcast <- websocket.BroadcastMsg{
+		SessionID: sessionId,
+		Message:   msgBytes,
 	}
 
 	resultCode = 200

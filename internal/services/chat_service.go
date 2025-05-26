@@ -16,13 +16,13 @@ type (
 
 		// 3. Gửi tin nhắn vào session
 		// Gợi ý: Nên thêm trường sender ("customer"/"staff") để phân biệt phía gửi
-		SendMessage(ctx context.Context, sessionId string, sender string, message string) (resultCode int, err error)
+		SendMessage(ctx context.Context, in *model.ChatMessageParams) (resultCode int, err error)
 
 		// 4. Lấy danh sách tất cả session mà nhân viên có thể thấy (gợi ý: có thể filter theo trạng thái open/closed)
-		GetAllSession(ctx context.Context, userId string) (resultCode int, out []model.GetAllSessionRow, err error)
+		GetAllSession(ctx context.Context) (resultCode int, out []model.GetAllSessionRow, err error)
 
 		// 5. Nhân viên tham gia vào một phiên chat
-		JoinChatSession(ctx context.Context, sessionId string, staffId string) (resultCode int, err error)
+		JoinChatSession(ctx context.Context, in *model.JoinChatSessionParams) (resultCode int, err error)
 
 		// 6. (Tuỳ chọn) Đóng phiên chat
 		CloseChatSession(ctx context.Context, sessionId string) (resultCode int, err error)
